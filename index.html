@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title" content="SkillHone: A Harness for Continual Agent Skill Evolution Through Persistent Decision History">
+  <meta name="description" content="SkillHone is a harness for continual agent skill evolution grounded in persistent decision history. It outperforms commercial deep-research agents on GAIA by 15.8 points and WebWalkerQA-EN by 3.2 points.">
+  <meta name="keywords" content="agent skills, skill evolution, deep research, LLM agents, GAIA, WebWalkerQA, persistent decision history, Claude, multi-agent">
+  <meta name="author" content="Zhiwei Li, Yong Hu">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="WeChat AI, Tencent">
+  <meta property="og:title" content="SkillHone: A Harness for Continual Agent Skill Evolution Through Persistent Decision History">
+  <meta property="og:description" content="SkillHone pairs skill revisions with evaluation-side evidence, recording structured histories of diagnoses, revisions, evidence, and outcomes for continual agent skill evolution.">
+  <meta property="og:url" content="https://github.com/Tencent/SkillHone">
+  <meta property="og:image" content="static/images/figures/framework.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="SkillHone architecture overview">
+  <meta property="article:published_time" content="2026-06-17T00:00:00.000Z">
+  <meta property="article:author" content="Zhiwei Li">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="agent skills">
+  <meta property="article:tag" content="LLM agents">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="SkillHone: A Harness for Continual Agent Skill Evolution">
+  <meta name="twitter:description" content="A harness for continual agent skill evolution grounded in persistent decision history.">
+  <meta name="twitter:image" content="static/images/figures/framework.jpg">
+  <meta name="twitter:image:alt" content="SkillHone architecture overview">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title" content="SkillHone: A Harness for Continual Agent Skill Evolution Through Persistent Decision History">
+  <meta name="citation_author" content="Li, Zhiwei">
+  <meta name="citation_author" content="Hu, Yong">
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_pdf_url" content="static/pdfs/paper.pdf">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>SkillHone: Continual Agent Skill Evolution Through Persistent Decision History</title>
+
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/svg+xml" href="static/images/favicon.svg?v=2">
+  <link rel="icon" type="image/x-icon" href="static/images/favicon.ico?v=2">
+  <link rel="shortcut icon" href="static/images/favicon.ico?v=2">
+  <link rel="apple-touch-icon" href="static/images/apple-touch-icon.png?v=2">
+
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <!-- Page-specific styles -->
+  <style>
+    .results-table-wrapper {
+      overflow-x: auto;
+      margin: 1.5rem 0;
+    }
+    table.results-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      background: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(15, 23, 42, 0.05);
+    }
+    table.results-table th,
+    table.results-table td {
+      padding: 0.7rem 0.9rem;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: center;
+    }
+    table.results-table thead th {
+      background: #1f2937;
+      color: #f9fafb;
+      font-weight: 600;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+    table.results-table tbody tr:nth-child(even) {
+      background: #f9fafb;
+    }
+    table.results-table td.row-label,
+    table.results-table th.row-label {
+      text-align: left;
+      font-weight: 500;
+    }
+    table.results-table td.group-label {
+      text-align: left;
+      font-style: italic;
+      color: #4b5563;
+      background: #eef2ff;
+    }
+    table.results-table .best {
+      font-weight: 700;
+      color: #1d4ed8;
+    }
+    table.results-table tbody tr.our-row {
+      background: #eef6ff !important;
+    }
+    table.results-table tbody tr.our-row td {
+      font-weight: 600;
+    }
+    .figure-caption {
+      font-size: 0.92rem;
+      color: #4b5563;
+      margin-top: 0.75rem;
+      text-align: center;
+      line-height: 1.5;
+    }
+    .contribution-list {
+      list-style: none;
+      padding-left: 0;
+      margin: 1rem 0 0 0;
+      counter-reset: c-item;
+    }
+    .contribution-list li {
+      position: relative;
+      padding-left: 2.3rem;
+      margin-bottom: 1rem;
+      line-height: 1.55;
+    }
+    .contribution-list li::before {
+      content: counter(c-item);
+      counter-increment: c-item;
+      position: absolute;
+      left: 0;
+      top: 0.1rem;
+      width: 1.7rem;
+      height: 1.7rem;
+      border-radius: 50%;
+      background: #1d4ed8;
+      color: #fff;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+    .highlight-card {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      justify-content: center;
+      margin: 1.4rem 0 0.5rem;
+    }
+    .highlight-card .card-item {
+      flex: 1 1 200px;
+      max-width: 240px;
+      background: linear-gradient(140deg, #1e3a8a 0%, #1d4ed8 55%, #1e40af 100%);
+      color: #fff;
+      border-radius: 12px;
+      padding: 1.1rem 1.2rem;
+      box-shadow: 0 10px 25px rgba(29, 78, 216, 0.22);
+    }
+    .highlight-card .card-item .stat {
+      font-size: 1.85rem;
+      font-weight: 800;
+      line-height: 1.1;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.18);
+    }
+    .highlight-card .card-item .label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #fff;
+      margin-top: 0.4rem;
+      line-height: 1.4;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.22);
+    }
+    .figure-frame {
+      background: #fff;
+      border-radius: 12px;
+      padding: 1.2rem 1.5rem 0.6rem;
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.06);
+    }
+    .figure-frame img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    .role-table th,
+    .role-table td {
+      padding: 0.6rem 0.8rem;
+      vertical-align: top;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    .role-table thead th {
+      background: #1f2937;
+      color: #fff;
+      font-weight: 600;
+    }
+    .role-table .team-opt {
+      color: #1d4ed8;
+      font-weight: 600;
+    }
+    .role-table .team-eval {
+      color: #047857;
+      font-weight: 600;
+    }
+    .role-table .team-runtime {
+      color: #b45309;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <main id="main-content">
+  <section class="hero">
+    <div class="hero-body">
+      <div class="container is-max-desktop">
+        <div class="columns is-centered">
+          <div class="column has-text-centered">
+            <h1 class="title is-1 publication-title">SkillHone: A Harness for Continual Agent Skill Evolution Through Persistent Decision History</h1>
+            <div class="is-size-5 publication-authors">
+              <span class="author-block">
+                <a href="mailto:zhiweili.jay@foxmail.com" target="_blank">Zhiwei Li</a><sup>1,2*</sup>,</span>
+              <span class="author-block">
+                <a href="mailto:rightyonghu@tencent.com" target="_blank">Yong Hu</a><sup>1</sup>
+              </span>
+            </div>
+
+            <div class="is-size-5 publication-authors">
+              <span class="author-block"><sup>1</sup>WeChat, Tencent Inc., China</span>
+              <span class="eql-cntrb"><small><br><sup>*</sup>Work was done while the author was interning at WeChat AI, Tencent Inc.</small></span>
+            </div>
+
+            <div class="column has-text-centered">
+              <div class="publication-links">
+                <span class="link-block">
+                  <a href="static/pdfs/paper.pdf" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-file-pdf"></i>
+                  </span>
+                  <span>Paper</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="https://github.com/Tencent/SkillHone" target="_blank"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fab fa-github"></i>
+                  </span>
+                  <span>Skills</span>
+                  </a>
+                </span>
+
+                <span class="link-block">
+                  <a href="#BibTeX"
+                  class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon">
+                    <i class="fas fa-quote-left"></i>
+                  </span>
+                  <span>BibTeX</span>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Teaser figure -->
+  <section class="hero teaser">
+    <div class="container is-max-desktop">
+      <div class="hero-body">
+        <div class="figure-frame">
+          <img src="static/images/figures/index.jpg" alt="Context loss in artifact-only skill evolution">
+        </div>
+        <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
+          <strong>Context loss in artifact-only skill evolution.</strong>
+          Without decision history, a later agent may repeat a prior optimization and make future improvement harder. SkillHone preserves the rationale across sessions.
+        </h2>
+      </div>
+    </div>
+  </section>
+  <!-- End teaser figure -->
+
+
+  <!-- Headline stats -->
+  <section class="section" style="padding-top: 0;">
+    <div class="container is-max-desktop">
+      <div class="highlight-card">
+        <div class="card-item">
+          <div class="stat">+15.8</div>
+          <div class="label">points over the deep-research agent on GAIA</div>
+        </div>
+        <div class="card-item">
+          <div class="stat">+3.2</div>
+          <div class="label">points over the deep-research agent on WebWalkerQA-EN</div>
+        </div>
+        <div class="card-item">
+          <div class="stat">+18.8</div>
+          <div class="label">avg. accuracy gain across 7 internal deployment scenarios</div>
+        </div>
+        <div class="card-item">
+          <div class="stat">+10.2</div>
+          <div class="label">points over Hermes-SE on the transfer backbone (Claude Sonnet 4.6)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Abstract -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <div class="columns is-centered has-text-centered">
+        <div class="column is-four-fifths">
+          <h2 class="title is-3">Abstract</h2>
+          <div class="content has-text-justified">
+            <p>
+              Agent skills extend language-model agents with task-specific procedures, scripts, and references, but the tasks and environments they target continually change.
+              Existing methods improve skills in bounded runs and retain only the final artifact, discarding the decision history that later agents need to interpret prior revisions, evaluations, and rejected alternatives.
+            </p>
+            <p>
+              We introduce <strong>SkillHone</strong>, a harness for continual agent skill evolution grounded in persistent decision history.
+              SkillHone pairs skill revisions with evaluation-side evidence that supplies practice feedback, recording structured histories of diagnoses, revisions, evidence, and outcomes.
+              Role-separated subagents run candidate skills on practice probes with redacted reporting and propose revisions informed by prior decisions, enabling cross-session refinement without rediscovering past rationale.
+            </p>
+            <p>
+              On deep-research benchmarks, SkillHone runs without a pre-integrated search stack and outperforms the commercially backed deep-research agent by <strong>15.8 points on GAIA</strong> and <strong>3.2 points on WebWalkerQA-EN</strong>, while also exceeding prior skill-evolution methods. We further deploy SkillHone on internal tool-mediated analysis scenarios, where it improves accuracy by an average of <strong>18.8 points across seven settings</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- End abstract -->
+
+
+  <!-- Framework -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">SkillHone Harness</h2>
+      <div class="content has-text-justified" style="max-width: 880px; margin: 0 auto;">
+        <p>
+          SkillHone separates each development step into <em>optimization</em> and <em>evaluation</em> dispatches. These dispatches are role-bounded so that diagnoses, revisions, redacted evidence, and outcomes can be recorded as auditable decision history. The harness is formalized as
+          \( \mathcal{M}=(\mathcal{T}_{\mathrm{opt}},\,\mathcal{T}_{\mathrm{eval}},\,\mathcal{D}) \),
+          where the dispatcher \(\mathcal{D}\) is a message router that creates subagents on demand and records accepted outcomes.
+        </p>
+      </div>
+
+      <div class="figure-frame" style="margin-top: 1.5rem;">
+        <img src="static/images/figures/framework.jpg" alt="SkillHone architecture">
+      </div>
+      <p class="figure-caption">
+        <strong>Figure&nbsp;1.</strong> SkillHone architecture. At each development step, an agent runtime dynamically dispatches fresh, role-bounded optimization and evaluation subagents on demand. Optimization dispatches maintain the skill repository and propose diagnosis-guided revisions; evaluation dispatches run candidate skills against the skill-evaluation repository and export <em>redacted</em> problem reports, without exposing probe targets, validators, or traces. Routed evidence, repository operations, and recorded outcomes form a persistent decision history that later agents reuse for continual skill evolution.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- Persistent Decision History -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Persistent Decision History</h2>
+      <div class="columns is-centered">
+        <div class="column is-four-fifths">
+          <div class="content has-text-justified">
+            <p>
+              SkillHone represents each development step as a decision record
+              \( h_t=(q_t,\,r_t,\,e_t,\,o_t) \),
+              where \(q_t\) is the diagnosis, \(r_t\) the candidate revision, \(e_t\) the redacted evaluation evidence, and \(o_t\) the outcome (accept, revise, reject, or defer). The decision history up to iteration \(t\) is \(\mathcal{H}_t=\{h_1,\ldots,h_t\}\).
+            </p>
+            <p>
+              A decision record is more than a version diff. A diff shows <em>how</em> files changed; a record links that change to the problem it targeted, the evidence used to evaluate it, and the final decision. When the environment changes, later subagents can inspect \(\mathcal{H}_t\) to determine whether a failure is new, whether a similar fix was already attempted, and why an alternative was rejected &mdash; preventing redundant edits and accidental rollbacks of working repairs.
+            </p>
+            <ul class="contribution-list">
+              <li>
+                <strong>Artifact gap.</strong> We identify a gap between artifact-centered skill improvement and continual skill maintenance: long-lived skills require persistent decision history, not just a single optimized artifact.
+              </li>
+              <li>
+                <strong>General agent-facing harness.</strong> SkillHone records diagnoses, revisions, evidence, and outcomes under separated roles, portable across agent runtimes such as Claude Code, Codex, and Hermes.
+              </li>
+              <li>
+                <strong>Strong empirical gains.</strong> SkillHone improves skill development across public benchmarks and internal deployments, with skill bundles that transfer across execution backbones without re-optimization.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- Main results -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Main Results</h2>
+      <p class="content has-text-justified" style="max-width: 880px; margin: 0 auto;">
+        We evaluate SkillHone on the text-only validation subset of <strong>GAIA</strong> and the English split of <strong>WebWalkerQA</strong>. Under the <em>raw open-web</em> setting, agents receive no pre-integrated search tools and must organize search, parsing, extraction, and recovery through portable skill bundles. SkillHone achieves the best average score on both benchmarks, surpassing the commercially backed deep-research agent that uses curated search.
+      </p>
+
+      <div class="results-table-wrapper">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th rowspan="2" class="row-label">Setting</th>
+              <th rowspan="2" class="row-label">System</th>
+              <th colspan="4">GAIA</th>
+              <th colspan="4">WebWalkerQA-EN</th>
+            </tr>
+            <tr>
+              <th>L1</th><th>L2</th><th>L3</th><th>Avg.</th>
+              <th>Easy</th><th>Med.</th><th>Hard</th><th>Avg.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="group-label">Curated search</td>
+              <td class="row-label">deep-research agent</td>
+              <td>61.9</td><td>47.0</td><td>26.3</td><td>48.8</td>
+              <td class="best">58.5</td><td>62.3</td><td>67.1</td><td>63.2</td>
+            </tr>
+            <tr>
+              <td rowspan="4" class="group-label">Raw open-web</td>
+              <td class="row-label">Existing-Skills</td>
+              <td>64.3</td><td>33.3</td><td>21.1</td><td>41.7</td>
+              <td>51.2</td><td>48.5</td><td>52.6</td><td>50.2</td>
+            </tr>
+            <tr>
+              <td class="row-label">Skill-Creator</td>
+              <td>64.3</td><td>37.9</td><td>21.1</td><td>44.1</td>
+              <td>36.6</td><td>36.9</td><td>40.8</td><td>38.1</td>
+            </tr>
+            <tr>
+              <td class="row-label">Hermes-SE</td>
+              <td>73.8</td><td>40.9</td><td class="best">31.6</td><td>50.4</td>
+              <td>53.7</td><td>51.5</td><td>55.3</td><td>53.0</td>
+            </tr>
+            <tr class="our-row">
+              <td class="row-label">SkillHone (Ours)</td>
+              <td class="best">76.2</td><td class="best">66.7</td><td class="best">31.6</td><td class="best">64.6</td>
+              <td>53.7</td><td class="best">69.2</td><td class="best">68.4</td><td class="best">66.4</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="figure-caption">
+        <strong>Table&nbsp;1.</strong> Main results on GAIA and WebWalkerQA-EN. Bold marks the best score in each column. SkillHone runs without curated search yet achieves the strongest averages.
+      </p>
+
+      <div class="columns" style="margin-top: 2rem;">
+        <div class="column is-half">
+          <div class="figure-frame" style="height: 100%;">
+            <img src="static/images/figures/gaia_transfer_sonnet.jpg" alt="GAIA cross-backbone transfer to Claude Sonnet 4.6">
+          </div>
+        </div>
+        <div class="column is-half">
+          <div class="content has-text-justified" style="padding: 0 0.5rem;">
+            <h3 class="title is-5">Cross-backbone transfer</h3>
+            <p>
+              Without any additional optimization on the new backbone, the SkillHone skill bundle transfers from <strong>Qwen3.6-35B-A3B</strong> (development) directly to <strong>Claude Sonnet 4.6</strong> (transfer).
+            </p>
+            <p>
+              SkillHone reaches <strong>72.4%</strong> on GAIA under Sonnet 4.6, exceeding Hermes-SE by <strong>10.2</strong> points, Existing-Skills by <strong>15.7</strong>, and Skill-Creator by <strong>24.4</strong> &mdash; evidence that the gain reflects the skill procedure rather than fitting to one model.
+            </p>
+          </div>
+        </div>
+      </div>
+      <p class="figure-caption" style="margin-top: 0;">
+        <strong>Figure&nbsp;2.</strong> GAIA accuracy under the development backbone (Qwen3.6-35B-A3B) and the transfer backbone (Claude Sonnet 4.6). Each skill bundle is run directly on Sonnet 4.6 without additional optimization.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- Ablation -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Ablation</h2>
+      <p class="content has-text-justified" style="max-width: 820px; margin: 0 auto;">
+        We isolate the two core mechanisms.
+        <strong>No decision history</strong> keeps role-separated subagents but starts each step from the latest skill artifact alone, optimizing on a scalar signal as in reflective baselines.
+        <strong>No role separation</strong> keeps decision history but lets a single subagent access the skill repository and unredacted evaluation assets jointly.
+      </p>
+
+      <div class="results-table-wrapper" style="max-width: 640px; margin-left: auto; margin-right: auto;">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th class="row-label">Variant</th>
+              <th>GAIA</th>
+              <th>WebWalkerQA-EN</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="our-row">
+              <td class="row-label">SkillHone (full)</td>
+              <td class="best">64.6</td>
+              <td class="best">66.4</td>
+            </tr>
+            <tr>
+              <td class="row-label">&nbsp;&nbsp;w/o decision history</td>
+              <td>51.2 <span style="color:#b91c1c;">(&minus;13.4)</span></td>
+              <td>55.5 <span style="color:#b91c1c;">(&minus;10.9)</span></td>
+            </tr>
+            <tr>
+              <td class="row-label">&nbsp;&nbsp;w/o role separation</td>
+              <td>58.2 <span style="color:#b91c1c;">(&minus;6.4)</span></td>
+              <td>61.1 <span style="color:#b91c1c;">(&minus;5.3)</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="figure-caption">
+        <strong>Table&nbsp;2.</strong> Ablation of SkillHone's two core mechanisms. Decision history accounts for the larger share of the gain.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- Deployment -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Deployment Study</h2>
+      <p class="content has-text-justified" style="max-width: 880px; margin: 0 auto;">
+        Beyond public benchmarks, we deploy SkillHone on internal tool-mediated analysis scenarios with exact-match evaluation. SkillHone improves six of seven seeded skills, with an average gain of <strong>+18.8 points</strong>; gains concentrate where the initial procedure leaves reusable analysis steps underspecified.
+      </p>
+
+      <div class="results-table-wrapper" style="max-width: 520px; margin-left: auto; margin-right: auto;">
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th class="row-label">Scenario</th>
+              <th>&Delta; Accuracy (pp)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="row-label">Counting</td><td class="best">+30.0</td></tr>
+            <tr><td class="row-label">Aggregation</td><td>+26.3</td></tr>
+            <tr><td class="row-label">Structure parsing</td><td>+25.0</td></tr>
+            <tr><td class="row-label">Density estimation</td><td>+23.1</td></tr>
+            <tr><td class="row-label">Span retrieval</td><td>+21.5</td></tr>
+            <tr><td class="row-label">Filtered ranking</td><td>+5.9</td></tr>
+            <tr><td class="row-label">List filtering</td><td>+0.0</td></tr>
+            <tr class="our-row">
+              <td class="row-label"><strong>Average</strong></td>
+              <td class="best">+18.8</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="figure-caption">
+        <strong>Table&nbsp;3.</strong> Deployment study on recurring internal tool-mediated analysis scenarios. Optimized minus seeded accuracy; the final row averages the listed scenarios.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- Trajectory -->
+  <section class="section hero is-light">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Optimization Trajectory</h2>
+      <div class="figure-frame">
+        <img src="static/images/figures/trajectory_comparison.jpg" alt="Optimization trajectories of SkillHone and Hermes-SE">
+      </div>
+      <p class="figure-caption">
+        <strong>Figure&nbsp;3.</strong> Probe-split trajectories for SkillHone and Hermes-SE across five optimization iterations starting from a shared seed skill. SkillHone improves from 30% to 70% while recovering from two regressed revisions through targeted follow-up edits, whereas Hermes-SE accepts or rejects whole prompt candidates under a scalar validation signal. This illustrates the operational value of persistent decision history: later revisions can target the offending part of a change while retaining useful edits.
+      </p>
+    </div>
+  </section>
+
+
+  <!-- Subagent roles -->
+  <section class="section">
+    <div class="container is-max-desktop">
+      <h2 class="title is-3 has-text-centered">Subagent Dispatch Patterns</h2>
+      <p class="content has-text-justified" style="max-width: 880px; margin: 0 auto;">
+        Roles in SkillHone are not fixed identities preconfigured by the harness. They are recurring dispatch patterns observed when the runtime dispatcher runs the development loop. Each subagent is created on demand, assigned to a permission-bounded team, and granted only the actions needed for that dispatch.
+      </p>
+
+      <div class="results-table-wrapper">
+        <table class="results-table role-table">
+          <thead>
+            <tr>
+              <th>Team</th>
+              <th>Dispatch pattern</th>
+              <th>Permission boundary</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td class="team-opt">Optimization</td><td>Proposer</td><td>Reads redacted reports and decision history; writes diagnoses; no access to probe targets or validators.</td></tr>
+            <tr><td class="team-opt">Optimization</td><td>Explorer</td><td>Searches external resources for reusable patterns when a revision needs them; no access to probe targets or validators.</td></tr>
+            <tr><td class="team-opt">Optimization</td><td>Developer</td><td>Edits the current skill and proposes typed revisions; no access to unredacted evaluation assets.</td></tr>
+            <tr><td class="team-opt">Optimization</td><td>Reviewer</td><td>Reviews pending skill changes using redacted evidence and prior decision records; no access to probe targets or validators.</td></tr>
+            <tr><td class="team-opt">Optimization</td><td>Decider</td><td>Accepts or rejects candidate revisions according to recorded evidence; no access to unredacted evaluation assets.</td></tr>
+            <tr><td class="team-eval">Evaluation</td><td>Executor</td><td>Runs the current skill on probe items; may inspect oracle targets, validators, and traces; no skill-repository write access.</td></tr>
+            <tr><td class="team-eval">Evaluation</td><td>Diagnoser</td><td>Analyzes outcomes and traces; updates evaluation diagnostics; no skill-repository write access.</td></tr>
+            <tr><td class="team-eval">Evaluation</td><td>Reporter</td><td>Produces redacted problem reports for the optimization side; no revision-decision authority.</td></tr>
+            <tr><td class="team-eval">Evaluation</td><td>Auditor</td><td>Checks probe metadata, traces, and redacted reports for evaluation-side consistency; no skill-repository write access.</td></tr>
+            <tr><td class="team-runtime">Runtime</td><td>Dispatcher</td><td>Creates subagents and routes artifacts between repositories; no direct skill edits and no access to unredacted probe targets.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="figure-caption">
+        <strong>Table&nbsp;4.</strong> Recurring subagent dispatch patterns. The role column describes the function performed by a dispatched subagent; the team column defines its permission boundary, making the optimizer/evaluator split structural rather than prompt-imposed.
+      </p>
+    </div>
+  </section>
+
+
+  <!--BibTex citation -->
+  <section class="section" id="BibTeX">
+    <div class="container is-max-desktop content">
+      <div class="bibtex-header">
+        <h2 class="title">BibTeX</h2>
+        <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+          <i class="fas fa-copy"></i>
+          <span class="copy-text">Copy</span>
+        </button>
+      </div>
+      <pre id="bibtex-code"><code>@article{li2026skillhone,
+  title   = {SkillHone: A Harness for Continual Agent Skill Evolution Through Persistent Decision History},
+  author  = {Li, Zhiwei and Hu, Yong},
+  year    = {2026},
+  note    = {WeChat AI, Tencent Inc.},
+  url     = {https://github.com/Tencent/SkillHone}
+}</code></pre>
+    </div>
+  </section>
+  <!--End BibTex citation -->
+
+
+  <footer class="footer">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-8">
+          <div class="content">
+            <p>
+              This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+              You are free to borrow the source code of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  </main>
+
+  <!-- MathJax for inline math -->
+  <script>
+    window.MathJax = {
+      tex: { inlineMath: [['\\(', '\\)']] },
+      svg: { fontCache: 'global' }
+    };
+  </script>
+  <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+
+</body>
+</html>
