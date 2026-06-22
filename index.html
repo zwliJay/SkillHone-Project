@@ -319,11 +319,10 @@
     <div class="container is-max-desktop">
       <div class="hero-body">
         <div class="figure-frame">
-          <img src="static/images/figures/index.jpg" alt="Context loss in artifact-only skill evolution">
+          <img src="static/images/figures/framework.jpg" alt="SkillHone architecture">
         </div>
         <h2 class="subtitle has-text-centered" style="margin-top: 1rem;">
-          <strong>Context loss in artifact-only skill evolution.</strong>
-          Without decision history, a later agent may repeat a prior optimization and make future improvement harder. SkillHone preserves the rationale across sessions.
+          <strong>SkillHone harness.</strong> At each development step, the agent runtime dispatches fresh, role-bounded optimization and evaluation subagents; routed evidence, repository operations, and recorded outcomes form a persistent decision history that later agents reuse for continual skill evolution.
         </h2>
       </div>
     </div>
@@ -395,12 +394,6 @@
         </p>
       </div>
 
-      <div class="figure-frame" style="margin-top: 1.5rem;">
-        <img src="static/images/figures/framework.jpg" alt="SkillHone architecture">
-      </div>
-      <p class="figure-caption">
-        <strong>Figure&nbsp;1.</strong> SkillHone architecture. At each development step, an agent runtime dynamically dispatches fresh, role-bounded optimization and evaluation subagents on demand. Optimization dispatches maintain the skill repository and propose diagnosis-guided revisions; evaluation dispatches run candidate skills against the skill-evaluation repository and export <em>redacted</em> problem reports, without exposing probe targets, validators, or traces. Routed evidence, repository operations, and recorded outcomes form a persistent decision history that later agents reuse for continual skill evolution.
-      </p>
     </div>
   </section>
 
@@ -514,7 +507,7 @@
         </div>
       </div>
       <p class="figure-caption" style="margin-top: 0;">
-        <strong>Figure&nbsp;2.</strong> GAIA accuracy under the development backbone (Qwen3.6-35B-A3B) and the transfer backbone (Claude Sonnet 4.6). Each skill bundle is run directly on Sonnet 4.6 without additional optimization.
+        <strong>Figure&nbsp;1.</strong> GAIA accuracy under the development backbone (Qwen3.6-35B-A3B) and the transfer backbone (Claude Sonnet 4.6). Each skill bundle is run directly on Sonnet 4.6 without additional optimization.
       </p>
     </div>
   </section>
@@ -611,7 +604,7 @@
         <img src="static/images/figures/trajectory_comparison.jpg" alt="Optimization trajectories of SkillHone and Hermes-SE">
       </div>
       <p class="figure-caption">
-        <strong>Figure&nbsp;3.</strong> Probe-split trajectories for SkillHone and Hermes-SE across five optimization iterations starting from a shared seed skill. SkillHone improves from 30% to 70% while recovering from two regressed revisions through targeted follow-up edits, whereas Hermes-SE accepts or rejects whole prompt candidates under a scalar validation signal. This illustrates the operational value of persistent decision history: later revisions can target the offending part of a change while retaining useful edits.
+        <strong>Figure&nbsp;2.</strong> Probe-split trajectories for SkillHone and Hermes-SE across five optimization iterations starting from a shared seed skill. SkillHone improves from 30% to 70% while recovering from two regressed revisions through targeted follow-up edits, whereas Hermes-SE accepts or rejects whole prompt candidates under a scalar validation signal. This illustrates the operational value of persistent decision history: later revisions can target the offending part of a change while retaining useful edits.
       </p>
     </div>
   </section>
