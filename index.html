@@ -88,9 +88,18 @@
   </section>
 
   <main class="page">
+    <section class="block reveal" id="start" data-section="01">
+      <h2 class="head">Start with the Agent you already use.</h2><p class="lede">Give this prompt to Codex, Claude Code, Cursor, Pi or ZCode. The installation guide covers setup and verification.</p>
+      <div class="start-panel"><div class="prompt-header"><span>Ask your coding Agent</span><button class="copy-button" data-copy="install-prompt">Copy prompt</button></div><pre class="install-prompt" id="install-prompt">Install SkillHone from https://github.com/Tencent/SkillHone, following docs/install/skillhone.md. Make the CLI and bundled Skills available to this Agent, use the documented --install-links=true Git installation command, and verify the installation.</pre></div><p class="copy-status" role="status" aria-live="polite"></p>
+      <div class="start-links"><a href="https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md">Installation guide</a><a href="https://github.com/Tencent/SkillHone">Source code</a><a href="https://github.com/Tencent/SkillHone/issues">Questions and issues</a></div>
+      <p class="result-context">Recording and reviewing Issues, PRs and Wiki records needs no model credential. Install and configure the optional DeepSeek Harness runtime when you want it to execute repairs.</p>
+      <details class="terminal-install"><summary>Prefer the terminal?</summary><pre><code>npm install -g --install-links=true git+https://github.com/Tencent/SkillHone.git#main
+skillhone --help
+skillhone setup --agent codex</code></pre><p>Replace <code>codex</code> with your Agent runtime. Follow the guide to configure models and verify a real repair-tool round trip.</p></details>
+    </section>
 
 
-    <section class="block reveal" id="overview" data-section="01">
+    <section class="block reveal" id="overview" data-section="02">
       <h2 class="head">A Skill can improve.<br>Its knowledge should accumulate.</h2>
       <p class="lede">A missing script, a broken reference, an outdated API: real work exposes gaps that a polished instruction file alone cannot solve. SkillHone connects those failures to complete, reviewable repairs.</p>
       <div class="overview-grid" style="margin-top:32px">
@@ -105,28 +114,20 @@
     <section class="video-block reveal" id="research-film"><details class="research-film"><summary>Explore the longer research walkthrough</summary><div class="video-row"><div><p class="video-note">The original two-minute research introduction explains persistent decision history and cross-backbone transfer.</p><video controls preload="none" poster="static/images/posters/cover-4-headline.jpg" playsinline aria-label="Original research walkthrough"><source src="https://github.com/user-attachments/assets/1433fd49-fffd-4c55-8b90-ab6f14967446" type="video/mp4"></video></div><div><p class="video-note">Original research demonstration</p><video controls preload="none" poster="static/images/posters/cover-3-demo.jpg" playsinline aria-label="Original research demonstration"><source src="https://github.com/user-attachments/assets/ecab6d56-b2c1-4c2b-a584-e15e4fdf21d7" type="video/mp4"></video></div></div></details>
     </section>
 
-    <section class="block reveal" id="workbench" data-section="02">
+    <section class="block reveal" id="workbench" data-section="03">
       <div class="workbench-layout"><div class="workbench-copy"><h2 class="head">See what needs attention.<br>Review what changed.</h2><p class="lede">The local workbench puts Skills and their repair records in one place.</p><ul><li><b>Skills at a glance:</b> current state, open Issues and per-Skill approval counts.</li><li><b>An approval inbox:</b> inspect tests, changed files, commits and the repair trajectory.</li><li><b>History that stays:</b> linked Wiki records preserve the reasoning behind earlier revisions.</li></ul><a href="https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md">Open the workbench installation guide</a></div>
       <figure class="workbench-preview"><a href="static/images/product/workbench.png" target="_blank" rel="noopener" aria-label="Open full-size workbench screenshot"><img src="static/images/product/workbench.png" width="2880" height="2740" loading="lazy" alt="SkillHone development workbench showing a Skills list and two local PRs awaiting review"></a><figcaption>Development workbench with actual local records. Click to inspect the full screenshot. Local PRs belong to the Skill repository on your computer.</figcaption></figure></div>
     </section>
-    <section class="block reveal" id="workflow" data-section="03">
+    <section class="block reveal" id="workflow" data-section="04">
       <h2 class="head">From a real failure to a repair you can review.</h2>
       <ol class="pipeline"><li><strong>Report</strong><p>Capture a reproducible failure with sanitized evidence in a local Issue.</p></li><li><strong>Reproduce</strong><p>Attach a focused regression test for the behavior that needs to change.</p></li><li><strong>Repair</strong><p>DeepSeek Harness works on an isolated branch and runs the linked tests.</p></li><li><strong>Review</strong><p>Inspect the local PR, its diff, tests and run before approving a merge.</p></li><li><strong>Remember</strong><p>Keep the linked outcome and Wiki record for the next Agent or session.</p></li></ol>
       <p class="case-note"><b>Follow a public example.</b> The Phoenix tracing Skill referenced four documents that were never shipped. Inspect the original <a href="https://github.com/github/awesome-copilot/issues/2567">Issue #2567</a>, the <a href="https://github.com/github/awesome-copilot/pull/2568">merged fix #2568</a>, and the <a href="https://github.com/Tencent/SkillHone/tree/main/examples/phoenix-tracing">reproducible SkillHone walkthrough</a>.</p>
     </section>
-    <section class="block reveal" id="paths" data-section="04">
+    <section class="block reveal" id="paths" data-section="05">
       <h2 class="head">Two ways to keep improving.</h2><p class="lede">Choose the workflow that matches the evidence you have.</p>
       <div class="path-grid"><article class="path-card"><h3>Repair failures from real work</h3><p class="path-trigger">Start with a reproducible Skill defect.</p><p>Use runtime maintenance for missing files, broken scripts, stale instructions and API drift. Review the linked regression test and local PR.</p><a href="https://github.com/Tencent/SkillHone/tree/main/skills/skillhone-auto-optimization">Runtime maintenance workflow</a></article><article class="path-card"><h3>Improve a measured capability</h3><p class="path-trigger">Start with a frozen evaluator in a separate repository.</p><p>Measure a baseline, iterate on candidates, validate the proposed improvement and retain the decision history. Evaluation data stays in the Eval repository.</p><a href="https://github.com/Tencent/SkillHone/blob/main/docs/benchmark-optimization.md">Evaluation-driven workflow</a></article></div>
     </section>
-    <section class="block reveal" id="start" data-section="05">
-      <h2 class="head">Start with the Agent you already use.</h2><p class="lede">Give this prompt to Codex, Claude Code, Cursor, Pi or ZCode. The installation guide covers setup and verification.</p>
-      <div class="start-panel"><div class="prompt-header"><span>Ask your coding Agent</span><button class="copy-button" data-copy="install-prompt">Copy prompt</button></div><pre class="install-prompt" id="install-prompt">Install SkillHone from https://github.com/Tencent/SkillHone, following docs/install/skillhone.md. Make the CLI and bundled Skills available to this Agent, use the documented --install-links=true Git installation command, and verify the installation.</pre></div><p class="copy-status" role="status" aria-live="polite"></p>
-      <div class="start-links"><a href="https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md">Installation guide</a><a href="https://github.com/Tencent/SkillHone">Source code</a><a href="https://github.com/Tencent/SkillHone/issues">Questions and issues</a></div>
-      <p class="result-context">Recording and reviewing Issues, PRs and Wiki records needs no model credential. Install and configure the optional DeepSeek Harness runtime when you want it to execute repairs.</p>
-      <details class="terminal-install"><summary>Prefer the terminal?</summary><pre><code>npm install -g --install-links=true git+https://github.com/Tencent/SkillHone.git#main
-skillhone --help
-skillhone setup --agent codex</code></pre><p>Replace <code>codex</code> with your Agent runtime. Follow the guide to configure models and verify a real repair-tool round trip.</p></details>
-    </section>
+
 
     <!-- ============ Idea ============ -->
     <section class="block reveal" id="idea">
@@ -385,7 +386,8 @@ skillhone setup --agent codex</code></pre><p>Replace <code>codex</code> with you
     </section>
 
     <!-- ============ Cite ============ -->
-    <section class="block reveal" id="cite">
+    <section class="block reveal" id="open-source"><h2 class="head">Built on open source.</h2><p class="lede">DeepSeek Harness executes repairs. Node.js and its built-in SQLite API keep local records; Git manages repair branches; PyYAML parses quality-check metadata; Primer Octicons supplies workbench icons; TypeScript powers development and builds.</p><p class="component-links"><a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness ↗</a> · <a href="https://github.com/nodejs/node">Node.js ↗</a> · <a href="https://github.com/git/git">Git ↗</a> · <a href="https://github.com/yaml/pyyaml">PyYAML ↗</a> · <a href="https://github.com/primer/octicons">Primer Octicons ↗</a> · <a href="https://github.com/microsoft/TypeScript">TypeScript ↗</a></p><p><a href="https://github.com/Tencent/SkillHone/blob/main/THIRD_PARTY_NOTICES.md">Third-party notices ↗</a></p></section>
+<section class="block reveal" id="cite">
       <div class="label-rule">Cite</div>
       <h2 class="head">Cite the EMNLP 2026 paper.</h2>
       <p><a href="https://aclanthology.org/2026.emnlp-industry.105/">ACL Anthology</a> · <a href="https://arxiv.org/abs/2606.08671">arXiv</a> · <a href="static/skillhone.bib" download>Download BibTeX</a></p>

@@ -88,9 +88,18 @@
   </section>
 
   <main class="page">
+    <section class="block reveal" id="start" data-section="01">
+      <h2 class="head">从你正在使用的 Agent 开始。</h2><p class="lede">把下面这段话交给 Codex、Claude Code、Cursor、Pi 或 ZCode。安装指南包含环境设置与验证步骤。</p>
+      <div class="start-panel"><div class="prompt-header"><span>交给你的 Coding Agent</span><button class="copy-button" data-copy="install-prompt">复制提示词</button></div><pre class="install-prompt" id="install-prompt">从 https://github.com/Tencent/SkillHone 安装 SkillHone，遵循 docs/install/skillhone.md，让当前 Agent 能发现 CLI 和内置 Skills。使用文档中的 --install-links=true Git 安装命令，并验证安装结果。</pre></div><p class="copy-status" role="status" aria-live="polite"></p>
+      <div class="start-links"><a href="https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md">安装指南</a><a href="https://github.com/Tencent/SkillHone">源代码</a><a href="https://github.com/Tencent/SkillHone/issues">问题与反馈</a></div>
+      <p class="result-context">记录和审阅 Issue、PR、Wiki 不需要模型凭据。需要执行修复时，再安装并配置可选的 DeepSeek Harness 运行时。</p>
+      <details class="terminal-install"><summary>更习惯终端操作？</summary><pre><code>npm install -g --install-links=true git+https://github.com/Tencent/SkillHone.git#main
+skillhone --help
+skillhone setup --agent codex</code></pre><p>将 <code>codex</code> 换成你使用的 Agent 运行时；然后按指南配置模型，验证真实的修复工具调用。</p></details>
+    </section>
 
 
-    <section class="block reveal" id="overview" data-section="01">
+    <section class="block reveal" id="overview" data-section="02">
       <h2 class="head">Skill 会迭代，<br>学到的经验也应该积累。</h2>
       <p class="lede">脚本缺失、引用失效、API 变化，真实工作会暴露 Skill 的缺口。SkillHone 把这些故障与完整、可审阅的修复连接起来。</p>
       <div class="overview-grid" style="margin-top:32px">
@@ -105,32 +114,25 @@
     <section class="video-block reveal" id="research-film"><details class="research-film"><summary>展开观看更完整的研究介绍</summary><div class="video-row"><div><p class="video-note">原有两分钟研究介绍，进一步解释持久化决策历史和跨模型迁移。</p><video controls preload="none" poster="static/images/posters/cover-4-headline.jpg" playsinline aria-label="Original research walkthrough"><source src="https://github.com/user-attachments/assets/1433fd49-fffd-4c55-8b90-ab6f14967446" type="video/mp4"></video></div><div><p class="video-note">原有研究演示</p><video controls preload="none" poster="static/images/posters/cover-3-demo.jpg" playsinline aria-label="原有研究演示"><source src="https://github.com/user-attachments/assets/ecab6d56-b2c1-4c2b-a584-e15e4fdf21d7" type="video/mp4"></video></div></div></details>
     </section>
 
-    <section class="block reveal" id="workbench" data-section="02">
+    <section class="block reveal" id="workbench" data-section="03">
       <div class="workbench-layout"><div class="workbench-copy"><h2 class="head">看清哪些 Skills 需要处理，<br>审阅每一次修复。</h2><p class="lede">本地工作台把 Skills 与各自的修复记录放在一起。</p><ul><li><b>Skills 总览：</b> 当前状态、未关闭的 Issue，以及每个 Skill 的待审批数量。</li><li><b>审批收件箱：</b> 查看测试、变更文件、提交和修复轨迹，再决定是否合并。</li><li><b>保留修复历史：</b> 关联的 Wiki 记录留下每次修订背后的判断。</li></ul><a href="https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md">查看工作台安装指南</a></div>
       <figure class="workbench-preview"><a href="static/images/product/workbench.png" target="_blank" rel="noopener" aria-label="Open full-size workbench screenshot"><img src="static/images/product/workbench.png" width="2880" height="2740" loading="lazy" alt="SkillHone development workbench showing a Skills list and two local PRs awaiting review"></a><figcaption>开发版工作台与真实本地记录。点击查看完整截图；本地 PR 属于你电脑上的 Skill 仓库。</figcaption></figure></div>
     </section>
-    <section class="block reveal" id="workflow" data-section="03">
+    <section class="block reveal" id="workflow" data-section="04">
       <h2 class="head">从真实故障，到可审阅的修复。</h2>
       <ol class="pipeline"><li><strong>报告问题</strong><p>将可复现故障及脱敏证据记录为本地 Issue。</p></li><li><strong>复现故障</strong><p>关联一项聚焦的回归测试，明确需要改变的行为。</p></li><li><strong>执行修复</strong><p>DeepSeek Harness 在独立分支中修复，并运行关联测试。</p></li><li><strong>审阅变更</strong><p>检查本地 PR、Diff、测试与 Run，再批准合并。</p></li><li><strong>保留经验</strong><p>把结果与 Wiki 记录留给后续 Agent 和会话。</p></li></ol>
       <p class="case-note"><b>跟着公开案例走一遍。</b> Phoenix tracing Skill 引用了四份未随包发布的文档。可以查看原始 <a href="https://github.com/github/awesome-copilot/issues/2567">Issue #2567</a>、<a href="https://github.com/github/awesome-copilot/pull/2568">已合并的修复 #2568</a>，以及 <a href="https://github.com/Tencent/SkillHone/tree/main/examples/phoenix-tracing">SkillHone 复现指南</a>。</p>
     </section>
-    <section class="block reveal" id="paths" data-section="04">
+    <section class="block reveal" id="paths" data-section="05">
       <h2 class="head">两种持续改进路径。</h2><p class="lede">根据你手头的证据选择工作流。</p>
       <div class="path-grid"><article class="path-card"><h3>修复真实任务中的故障</h3><p class="path-trigger">从可复现的 Skill 缺陷开始。</p><p>适用于文件缺失、脚本损坏、说明过时或 API 漂移。通过关联的回归测试和本地 PR 审阅修复。</p><a href="https://github.com/Tencent/SkillHone/tree/main/skills/skillhone-auto-optimization">运行时维护工作流</a></article><article class="path-card"><h3>通过评估改进能力</h3><p class="path-trigger">从独立仓库中的冻结评估器开始。</p><p>测量基线、迭代候选、验证优化，并保留决策历史。评估数据保留在独立的 Eval 仓库中。</p><a href="https://github.com/Tencent/SkillHone/blob/main/docs/benchmark-optimization.md">评估驱动优化工作流</a></article></div>
     </section>
-    <section class="block reveal" id="start" data-section="05">
-      <h2 class="head">从你正在使用的 Agent 开始。</h2><p class="lede">把下面这段话交给 Codex、Claude Code、Cursor、Pi 或 ZCode。安装指南包含环境设置与验证步骤。</p>
-      <div class="start-panel"><div class="prompt-header"><span>交给你的 Coding Agent</span><button class="copy-button" data-copy="install-prompt">复制提示词</button></div><pre class="install-prompt" id="install-prompt">从 https://github.com/Tencent/SkillHone 安装 SkillHone，遵循 docs/install/skillhone.md，让当前 Agent 能发现 CLI 和内置 Skills。使用文档中的 --install-links=true Git 安装命令，并验证安装结果。</pre></div><p class="copy-status" role="status" aria-live="polite"></p>
-      <div class="start-links"><a href="https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md">安装指南</a><a href="https://github.com/Tencent/SkillHone">源代码</a><a href="https://github.com/Tencent/SkillHone/issues">问题与反馈</a></div>
-      <p class="result-context">记录和审阅 Issue、PR、Wiki 不需要模型凭据。需要执行修复时，再安装并配置可选的 DeepSeek Harness 运行时。</p>
-      <details class="terminal-install"><summary>更习惯终端操作？</summary><pre><code>npm install -g --install-links=true git+https://github.com/Tencent/SkillHone.git#main
-skillhone --help
-skillhone setup --agent codex</code></pre><p>将 <code>codex</code> 换成你使用的 Agent 运行时；然后按指南配置模型，验证真实的修复工具调用。</p></details>
-    </section>
+
 
 
     <section class="block reveal" id="idea"><div class="grid-two"><div><h2 class="head">Diff 留下了变更，<br>决策历史留下了原因。</h2><p class="lede">SkillHone 把每次开发步骤表示为结构化的决策记录。当任务和环境变化时，后续 Agent 可以查阅既有历史，判断相似修复是否尝试过，以及某个方案为何被否决。</p><p>论文中的优化与评估角色拥有不同权限。优化方使用脱敏反馈修订 Skill，评估方保留原始评估材料，二者通过调度器交换结果。</p></div><aside class="record-card"><div class="rcrd-eyebrow">持久化决策记录</div><div class="formula">h<sub>t</sub> = (q<sub>t</sub>, r<sub>t</sub>, e<sub>t</sub>, o<sub>t</sub>)</div><dl><dt>q<span>t</span></dt><dd><b>诊断：</b>当前问题是什么。</dd><dt>r<span>t</span></dt><dd><b>修订：</b>候选变更是什么。</dd><dt>e<span>t</span></dt><dd><b>证据：</b>评估器返回的脱敏反馈。</dd><dt>o<span>t</span></dt><dd><b>结果：</b>接受、继续修订、拒绝或暂缓。</dd></dl></aside></div><div class="figure" style="margin-top:32px"><img src="static/images/figures/framework.jpg" loading="lazy" alt="SkillHone 论文架构：优化团队与评估团队通过调度器交换反馈，形成持久化决策历史" width="1098" height="632"><p class="caption">论文架构图。优化与评估分工，以及跨会话保留的决策历史。</p></div></section>
     <section class="block reveal" id="results" data-section="06"><h2 class="head">EMNLP 2026 Industry Track。</h2><p class="lede">论文在 GAIA 与 WebWalkerQA-EN 上报告了下列平均准确率。SkillHone 采用无预先集成搜索栈的原始开放网络设置；对照的商业 Deep Research Agent 保留其检索栈。</p><div class="tbl-wrap" style="margin-top:28px"><table class="tbl"><caption class="caption">论文表 1：主要实验结果，单位为百分比。</caption><thead><tr><th class="row-label">系统与设置</th><th>GAIA</th><th>WebWalkerQA-EN</th></tr></thead><tbody><tr><td class="row-label">商业 Deep Research Agent（集成搜索）</td><td>48.8</td><td>63.2</td></tr><tr class="us"><td class="row-label">SkillHone（原始开放网络）</td><td class="best">64.6</td><td class="best">66.4</td></tr><tr><td class="row-label">准确率提高</td><td>+15.8 分</td><td>+3.2 分</td></tr></tbody></table></div><p class="result-context">论文还报告了跨模型迁移、消融实验和七个内部场景的部署评估。上述数字对应论文中的设置与基线；自己的 Skill 可以通过关联测试或独立评估器测量优化效果。</p><div class="start-links"><a href="https://aclanthology.org/2026.emnlp-industry.105/">阅读正式论文</a><a href="index.html#results" lang="en">完整实验表与分析（English）</a></div></section>
+<section class="block reveal" id="open-source"><h2 class="head">开源组件，各司其职。</h2><p class="lede">DeepSeek Harness 执行修复；Node.js 与内置 SQLite 保存本地记录；Git 管理修复分支；PyYAML 解析质量检查元数据；Primer Octicons 提供工作台图标；TypeScript 用于开发和构建。</p><p class="component-links"><a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness ↗</a> · <a href="https://github.com/nodejs/node">Node.js ↗</a> · <a href="https://github.com/git/git">Git ↗</a> · <a href="https://github.com/yaml/pyyaml">PyYAML ↗</a> · <a href="https://github.com/primer/octicons">Primer Octicons ↗</a> · <a href="https://github.com/microsoft/TypeScript">TypeScript ↗</a></p><p><a href="https://github.com/Tencent/SkillHone/blob/main/THIRD_PARTY_NOTICES.md">第三方声明 ↗</a></p></section>
 <section class="block reveal" id="cite"><h2 class="head">引用论文。</h2><p><a href="https://aclanthology.org/2026.emnlp-industry.105/">ACL Anthology</a> · <a href="https://arxiv.org/abs/2606.08671">arXiv</a> · <a href="static/skillhone.bib" download>下载 BibTeX</a></p><div class="bib"><button class="copy" data-copy="bib-code">复制</button><pre id="bib-code">@inproceedings{li-hu-2026-skillhone,
   title = "{S}kill{H}one: A Harness for Continual Agent Skill Evolution Through Persistent Decision History",
   author = "Li, Zhiwei and Hu, Yong",

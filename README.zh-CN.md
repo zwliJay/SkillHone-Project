@@ -8,6 +8,16 @@
 
 ![SkillHone：完整 Skill 优化、持久化决策历史与可审阅证据](static/images/social-preview.png)
 
+## 开始使用
+
+把这段话交给你的 Coding Agent：
+
+> 从 `https://github.com/Tencent/SkillHone` 安装 SkillHone，遵循
+> `docs/install/skillhone.md`，让当前 Agent 能发现 CLI 和 Skills。使用文档中的
+> `--install-links=true` Git 安装命令，并验证安装结果。
+
+[安装指南](https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md) · [公开修复示例](https://github.com/Tencent/SkillHone/tree/main/examples/phoenix-tracing)
+
 SkillHone 是一个持续改进 Agent Skills 的框架。Agent 在真实任务中遇到脚本缺失、引用失效或 API 变化时，SkillHone 把这些证据连接到完整的仓库修复，并保留诊断、修订、证据与结果，供后续 Agent 和会话继续使用。
 
 - **优化完整 Skill**：说明、脚本、参考资料、资源与测试放在同一个 Git 变更中。
@@ -31,6 +41,20 @@ https://github.com/user-attachments/assets/69bafb25-5ba9-44cb-b5ff-8a2a94f8e51a
 
 </details>
 
+## 开源组件
+
+| 组件 | 在 SkillHone 中的用途 |
+|---|---|
+| [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) | 运行时维护流程的修复执行器 |
+| [Node.js](https://github.com/nodejs/node) 及其内置 SQLite API | CLI、本地 HTTP 服务，以及 Issue / PR / Run / Wiki 的持久化存储 |
+| [Git](https://github.com/git/git) | 独立修复分支、提交、Diff 和本地合并 |
+| [PyYAML](https://github.com/yaml/pyyaml) | 随附 Python 质量检查中的 YAML 元数据解析 |
+| [Primer Octicons](https://github.com/primer/octicons) | 工作台中的 Issue、PR、仓库与 Wiki 图标 |
+| [TypeScript](https://github.com/microsoft/TypeScript) | 开发与构建工具链 |
+
+工作台使用浏览器原生 HTML、CSS 和 JavaScript。详见[第三方声明](https://github.com/Tencent/SkillHone/blob/main/THIRD_PARTY_NOTICES.md)
+及 [Harness 集成说明](https://github.com/Tencent/SkillHone/blob/main/docs/deepseek-harness.md)。
+
 ## EMNLP 2026 Industry Track
 
 论文已被 **EMNLP 2026 Industry Track** 接收。论文报告的主要实验平均准确率如下：
@@ -46,10 +70,6 @@ SkillHone 无需预先集成搜索栈。上述结果对应论文中的设置与�
 > Zhiwei Li and Yong Hu. 2026. *SkillHone: A Harness for Continual Agent Skill Evolution Through Persistent Decision History.* EMNLP 2026 Industry Track, pp. 1819–1829.
 
 [下载 BibTeX](static/skillhone.bib) · [CITATION.cff](CITATION.cff)
-
-## 开始使用
-
-查看[源代码仓库的安装指南](https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md)，或跟着 [Phoenix tracing 公开案例](https://github.com/Tencent/SkillHone/tree/main/examples/phoenix-tracing)复现一次修复。安装文档覆盖 Codex、Claude Code、Cursor、Pi 和 ZCode，其他能够调用 CLI 的 Agent 也可以使用同一工作流。DeepSeek Harness 是可选的修复执行器。
 
 ## 这个仓库放什么
 

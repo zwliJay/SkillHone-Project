@@ -12,6 +12,17 @@
 
 </div>
 
+## Get started
+
+Give your coding Agent this prompt:
+
+> Install SkillHone from `https://github.com/Tencent/SkillHone`, following
+> `docs/install/skillhone.md`. Make the CLI and Skills available to this Agent,
+> use the documented `--install-links=true` Git installation command, and
+> verify the installation.
+
+[Installation guide](https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md) · [Public repair example](https://github.com/Tencent/SkillHone/tree/main/examples/phoenix-tracing)
+
 An Agent encounters a missing script, a broken reference, or an outdated API. SkillHone connects that evidence to a repair of the **complete Skill repository**, preserving the diagnosis, revision, evidence and outcome for the next session.
 
 - **Whole-Skill improvement:** revise `SKILL.md`, scripts, references, assets and tests together.
@@ -33,6 +44,20 @@ Actual local repair records. Local PRs belong to the Skill repository on your co
 
 </details>
 
+## Built with open source
+
+| Component | Role in SkillHone |
+|---|---|
+| [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) | Repair executor for the runtime maintenance workflow |
+| [Node.js](https://github.com/nodejs/node) and its built-in SQLite API | CLI, local HTTP server, and persistent Issue / PR / Run / Wiki records |
+| [Git](https://github.com/git/git) | Isolated repair branches, commits, diffs and local merges |
+| [PyYAML](https://github.com/yaml/pyyaml) | YAML metadata parsing for the bundled Python quality checks |
+| [Primer Octicons](https://github.com/primer/octicons) | Issue, PR, repository and Wiki icons in the workbench |
+| [TypeScript](https://github.com/microsoft/TypeScript) | Development and build toolchain |
+
+The workbench uses browser-native HTML, CSS and JavaScript. See
+[third-party notices](https://github.com/Tencent/SkillHone/blob/main/THIRD_PARTY_NOTICES.md) and the [Harness integration](https://github.com/Tencent/SkillHone/blob/main/docs/deepseek-harness.md).
+
 ## Published research
 
 **Accepted at EMNLP 2026 Industry Track.** The paper reports the following average benchmark scores:
@@ -48,10 +73,6 @@ SkillHone runs without a pre-integrated search stack. These figures belong to th
 > Zhiwei Li and Yong Hu. 2026. *SkillHone: A Harness for Continual Agent Skill Evolution Through Persistent Decision History.* Proceedings of EMNLP 2026: Industry Track, pp. 1819–1829.
 
 [Download BibTeX](static/skillhone.bib) · [CITATION.cff](CITATION.cff)
-
-## Try SkillHone
-
-Use the [installation guide in the source repository](https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md), or follow the public [Phoenix tracing repair walkthrough](https://github.com/Tencent/SkillHone/tree/main/examples/phoenix-tracing). CLI-capable Agents can use the workflow; documented installation targets include Codex, Claude Code, Cursor, Pi and ZCode. DeepSeek Harness is the optional repair executor.
 
 ## About this repository
 
