@@ -1,0 +1,10 @@
+tmp/
+node_modules/
+.DS_Store
+*.log
+# Motion media is hosted as release attachments, never in the source tree.
+*.mp4
+*.mov
+*.webm
+*.mkv
+*.gif

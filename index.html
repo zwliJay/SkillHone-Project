@@ -5,866 +5,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SkillHone · Continual Agent Skill Evolution Through Persistent Decision History</title>
 
-  <meta name="description" content="SkillHone is a harness for continual agent skill evolution grounded in persistent decision history. It outperforms commercial deep-research agents on GAIA by 15.8 points and WebWalkerQA-EN by 3.2 points.">
+  <meta name="description" content="SkillHone continually improves complete Agent Skill repositories with persistent decision history and a local Issue, PR and Wiki workbench. Accepted at EMNLP 2026 Industry Track.">
   <meta name="keywords" content="agent skills, skill evolution, deep research, LLM agents, GAIA, WebWalkerQA, persistent decision history, Claude, multi-agent">
   <meta name="author" content="Zhiwei Li, Yong Hu">
 
   <meta property="og:type" content="article">
-  <meta property="og:site_name" content="WeChat AI, Tencent">
+  <meta property="og:site_name" content="SkillHone">
   <meta property="og:title" content="SkillHone: A Harness for Continual Agent Skill Evolution Through Persistent Decision History">
   <meta property="og:description" content="SkillHone pairs skill revisions with evaluation-side evidence, recording structured histories of diagnoses, revisions, evidence, and outcomes.">
-  <meta property="og:url" content="https://github.com/Tencent/SkillHone">
-  <meta property="og:image" content="static/images/figures/framework.jpg">
+  <meta property="og:url" content="https://zwlijay.github.io/SkillHone-Project/">
+  <meta property="og:image" content="https://zwlijay.github.io/SkillHone-Project/static/images/social-preview.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="SkillHone — Continual Agent Skill Evolution">
-  <meta name="twitter:image" content="static/images/figures/framework.jpg">
+  <meta name="twitter:image" content="https://zwlijay.github.io/SkillHone-Project/static/images/social-preview.png">
 
   <meta name="citation_title" content="SkillHone: A Harness for Continual Agent Skill Evolution Through Persistent Decision History">
   <meta name="citation_author" content="Li, Zhiwei">
   <meta name="citation_author" content="Hu, Yong">
-  <meta name="citation_publication_date" content="2026">
-  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2606.08671">
+  <meta name="citation_publication_date" content="2026/10">
+  <meta name="citation_conference_title" content="EMNLP 2026 Industry Track">
+  <meta name="citation_firstpage" content="1819">
+  <meta name="citation_lastpage" content="1829">
+  <meta name="citation_pdf_url" content="https://aclanthology.org/2026.emnlp-industry.105.pdf">
 
+  <link rel="canonical" href="https://zwlijay.github.io/SkillHone-Project/">
+  <link rel="alternate" hreflang="en" href="https://zwlijay.github.io/SkillHone-Project/">
+  <link rel="alternate" hreflang="zh-CN" href="https://zwlijay.github.io/SkillHone-Project/zh.html">
   <link rel="icon" type="image/svg+xml" href="static/images/favicon.svg?v=3">
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico?v=3">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;0,6..72,700;0,6..72,800;1,6..72,400;1,6..72,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root {
-      --paper:        #ffffff;
-      --paper-soft:   #f6f8fd;
-      --paper-card:   #ffffff;
-      --paper-tint:   #eef2ff;
-      --ink:          #0f172a;
-      --ink-soft:     #475569;
-      --ink-quiet:    #94a3b8;
-      --rule:         #e5e7eb;
-      --rule-soft:    #f1f5f9;
-
-      --primary:      #1d4ed8;
-      --primary-deep: #1e3a8a;
-      --primary-soft: #93c5fd;
-      --primary-tint: #dbeafe;
-
-      --slate:        #1f2937;
-      --slate-soft:   #475569;
-      --indigo:       #4338ca;
-      --red:          #b91c1c;
-      --green:        #047857;
-
-      --shadow-card:  0 1px 2px rgba(15, 23, 42, 0.05),
-                      0 8px 24px -12px rgba(15, 23, 42, 0.10);
-      --shadow-page:  0 24px 60px -28px rgba(15, 23, 42, 0.18);
-
-      --serif: "Newsreader", "Iowan Old Style", "Georgia", serif;
-      --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      --mono:  "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      color: var(--ink);
-      background: var(--paper-soft);
-      font-family: var(--sans);
-      font-size: 17px;
-      line-height: 1.65;
-      letter-spacing: 0;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    /* Paper texture: a faint dot grid (academic / engineering paper feel). */
-    body::before {
-      content: "";
-      position: fixed; inset: 0;
-      pointer-events: none;
-      opacity: 0.45;
-      background-image: radial-gradient(rgba(29, 78, 216, 0.08) 1px, transparent 1px);
-      background-size: 28px 28px;
-      mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent 70%);
-      -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, black, transparent 70%);
-      z-index: 0;
-    }
-
-    a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 4px; }
-    img { max-width: 100%; display: block; }
-
-    /* ===== Reveal on scroll ===== */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1);
-    }
-    .reveal.visible { opacity: 1; transform: none; }
-    @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
-    }
-
-    /* ============ Nav ============ */
-    .navbar {
-      position: fixed; z-index: 60; top: 0; left: 0; right: 0;
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 24px; padding: 18px 34px;
-      background: rgba(255, 255, 255, 0.75);
-      backdrop-filter: blur(14px) saturate(180%);
-      -webkit-backdrop-filter: blur(14px) saturate(180%);
-      border-bottom: 1px solid transparent;
-      transition: background .25s, border-color .25s, padding .25s;
-      font-family: var(--mono);
-      font-size: 12px;
-    }
-    .navbar.scrolled {
-      padding: 12px 34px;
-      background: rgba(255, 255, 255, 0.92);
-      border-bottom: 1px solid var(--rule);
-    }
-    .brand {
-      display: inline-flex; align-items: baseline; gap: 12px;
-      color: var(--ink);
-      text-decoration: none;
-    }
-    .brand .mark {
-      font-family: var(--serif);
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: -0.01em;
-      line-height: 1;
-    }
-    .brand .mark .a { color: var(--ink); }
-    .brand .mark .b { color: var(--primary); font-style: italic; }
-    .brand .org {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      border-left: 1px solid var(--rule);
-      padding-left: 12px;
-    }
-    nav.nav-links {
-      display: flex; align-items: center; gap: 26px;
-      font-family: var(--mono);
-      font-size: 12px;
-      letter-spacing: 0.08em;
-    }
-    nav.nav-links a {
-      color: var(--ink-soft);
-      text-decoration: none;
-      text-transform: uppercase;
-      transition: color .15s;
-    }
-    nav.nav-links a:hover { color: var(--primary); }
-    nav.nav-links .git {
-      color: var(--ink);
-      padding: 6px 12px;
-      border: 1px solid var(--rule);
-      border-radius: 4px;
-      background: var(--paper-card);
-    }
-
-    /* ============ Hero ============ */
-    .hero {
-      position: relative;
-      padding: 150px 32px 60px;
-      max-width: 1140px;
-      margin: 0 auto;
-    }
-    .hero::before {
-      content: "";
-      position: absolute; left: 32px; right: 32px; top: 130px;
-      height: 1px;
-      background: var(--rule);
-    }
-    .hero-tag {
-      display: inline-flex; align-items: center; gap: 10px;
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--primary);
-      padding: 6px 0;
-      margin-bottom: 36px;
-    }
-    .hero-tag::before {
-      content: "";
-      width: 22px; height: 1px;
-      background: var(--primary);
-    }
-    .hero-title {
-      font-family: var(--serif);
-      font-size: clamp(2.6rem, 6.2vw, 5.2rem);
-      font-weight: 500;
-      letter-spacing: -0.025em;
-      line-height: 1.02;
-      margin: 0 0 28px;
-      color: var(--ink);
-      max-width: 920px;
-    }
-    .hero-title em {
-      font-style: italic;
-      font-weight: 500;
-      color: var(--primary-deep);
-    }
-    .hero-title .why {
-      position: relative;
-      display: inline-block;
-    }
-    .hero-title .why::after {
-      content: "";
-      position: absolute;
-      left: -2%; right: -2%; bottom: 6%;
-      height: 14%;
-      background: var(--primary-soft);
-      opacity: 0.40;
-      z-index: -1;
-      border-radius: 2px;
-      transform: rotate(-0.4deg);
-    }
-    .hero-lede {
-      font-size: 1.12rem;
-      line-height: 1.7;
-      color: var(--ink-soft);
-      max-width: 680px;
-      margin: 0 0 38px;
-    }
-    .hero-lede b { color: var(--ink); font-weight: 600; }
-    .hero-meta {
-      font-family: var(--mono);
-      font-size: 12px;
-      color: var(--ink-soft);
-      letter-spacing: 0.04em;
-      margin: 0 0 32px;
-      padding: 14px 0;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      display: flex; flex-wrap: wrap; align-items: center; gap: 18px;
-    }
-    .hero-meta a { color: var(--ink); text-decoration: none; border-bottom: 1px dashed var(--ink-quiet); }
-    .hero-meta a:hover { color: var(--primary); border-color: var(--primary); }
-    .hero-meta .sep { color: var(--ink-quiet); }
-    .hero-meta .ico {
-      display: inline-block; width: 6px; height: 6px;
-      background: var(--primary); border-radius: 50%;
-      vertical-align: middle; margin-right: 6px;
-    }
-
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      gap: 9px; min-height: 44px;
-      padding: 11px 22px;
-      font-family: var(--mono);
-      font-size: 12.5px; font-weight: 600;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      text-decoration: none;
-      border-radius: 4px;
-      transition: transform .15s ease, background .15s ease, color .15s ease, box-shadow .15s ease;
-      cursor: pointer;
-    }
-    .btn.ink {
-      color: var(--paper);
-      background: var(--ink);
-      border: 1px solid var(--ink);
-    }
-    .btn.ink:hover { background: var(--primary-deep); border-color: var(--primary-deep); transform: translateY(-1px); }
-    .btn.outline {
-      color: var(--ink);
-      background: transparent;
-      border: 1px solid var(--ink);
-    }
-    .btn.outline:hover { background: var(--ink); color: var(--paper); transform: translateY(-1px); }
-    .btn svg { width: 14px; height: 14px; }
-
-    /* Headline result strip beneath hero buttons */
-    .stat-strip {
-      margin-top: 64px;
-      border-top: 1px solid var(--rule);
-      border-bottom: 1px solid var(--rule);
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 0;
-    }
-    .stat-cell {
-      padding: 22px 22px;
-      border-right: 1px solid var(--rule);
-      position: relative;
-    }
-    .stat-cell:last-child { border-right: none; }
-    .stat-cell .label {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 12px;
-    }
-    .stat-cell .num {
-      font-family: var(--serif);
-      font-size: 2.4rem;
-      font-weight: 600;
-      letter-spacing: -0.02em;
-      color: var(--ink);
-      line-height: 1;
-    }
-    .stat-cell .num .unit {
-      font-size: 0.95rem;
-      color: var(--primary);
-      font-weight: 500;
-      margin-left: 4px;
-    }
-    .stat-cell .note {
-      margin-top: 8px;
-      font-size: 13px;
-      line-height: 1.45;
-      color: var(--ink-soft);
-    }
-    @media (max-width: 860px) {
-      .stat-strip { grid-template-columns: repeat(2, 1fr); }
-      .stat-cell:nth-child(2) { border-right: none; }
-      .stat-cell:nth-child(1), .stat-cell:nth-child(2) { border-bottom: 1px solid var(--rule); }
-    }
-    @media (max-width: 480px) {
-      .stat-strip { grid-template-columns: 1fr; }
-      .stat-cell { border-right: none; border-bottom: 1px solid var(--rule); }
-      .stat-cell:last-child { border-bottom: none; }
-    }
-
-    /* ============ Section primitives ============ */
-    .page {
-      max-width: 1140px;
-      margin: 0 auto;
-      padding: 0 32px;
-      position: relative;
-      z-index: 1;
-    }
-    .block { padding: 92px 0; border-top: 1px solid var(--rule); }
-    .block:first-of-type { border-top: none; }
-
-    .label-rule {
-      display: inline-flex; align-items: center; gap: 12px;
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 14px;
-    }
-    .label-rule::before {
-      content: "§";
-      color: var(--primary);
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 18px;
-      line-height: 1;
-    }
-
-    h2.head {
-      font-family: var(--serif);
-      font-size: clamp(2rem, 3.6vw, 2.9rem);
-      font-weight: 500;
-      letter-spacing: -0.018em;
-      line-height: 1.1;
-      margin: 0 0 22px;
-      color: var(--ink);
-      max-width: 800px;
-    }
-    h2.head em { font-style: italic; color: var(--primary-deep); }
-    h3.subhead {
-      font-family: var(--serif);
-      font-size: 1.4rem;
-      font-weight: 600;
-      letter-spacing: -0.005em;
-      margin: 0 0 12px;
-      color: var(--ink);
-    }
-    .lede {
-      font-size: 1.08rem;
-      line-height: 1.7;
-      color: var(--ink-soft);
-      max-width: 720px;
-      margin: 0 0 12px;
-    }
-    .lede b { color: var(--ink); }
-
-    .prose p { font-size: 1.05rem; line-height: 1.75; margin: 0 0 1rem; color: var(--ink-soft); }
-    .prose p b, .prose p strong { color: var(--ink); font-weight: 600; }
-    .prose code, code.inl {
-      font-family: var(--mono);
-      font-size: 0.86em;
-      padding: 1px 6px;
-      border-radius: 4px;
-      background: var(--rule-soft);
-      color: var(--primary-deep);
-    }
-
-    /* ============ Video block ============ */
-    .video-block { padding: 56px 0; }
-    .video-hero {
-      border-radius: 6px;
-      overflow: hidden;
-      background: var(--ink);
-      box-shadow: var(--shadow-page);
-      aspect-ratio: 16/9;
-      border: 1px solid var(--rule);
-      position: relative;
-    }
-    .video-hero video { width: 100%; height: 100%; display: block; }
-
-    .video-row {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr;
-      gap: 28px;
-      margin-top: 28px;
-    }
-    @media (max-width: 880px) { .video-row { grid-template-columns: 1fr; } }
-    .video-note {
-      font-family: var(--serif);
-      font-size: 1.1rem;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1.55;
-      color: var(--ink-soft);
-      padding-left: 22px;
-      border-left: 2px solid var(--primary);
-    }
-    .video-note b { color: var(--ink); font-style: normal; font-weight: 600; }
-    .video-mini {
-      aspect-ratio: 16/9;
-      border-radius: 6px;
-      overflow: hidden;
-      background: var(--ink);
-      border: 1px solid var(--rule);
-      box-shadow: var(--shadow-card);
-    }
-    .video-mini video { width: 100%; height: 100%; display: block; }
-
-    /* ============ Idea / decision record card ============ */
-    .grid-two {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: 52px;
-      align-items: start;
-    }
-    @media (max-width: 880px) { .grid-two { grid-template-columns: 1fr; gap: 36px; } }
-
-    .record-card {
-      background: var(--paper-card);
-      border: 1px solid var(--rule);
-      border-radius: 8px;
-      padding: 28px 30px;
-      box-shadow: var(--shadow-card);
-      position: relative;
-      overflow: hidden;
-    }
-    .record-card::before {
-      content: "";
-      position: absolute; left: 0; top: 0; bottom: 0;
-      width: 4px;
-      background: var(--primary);
-    }
-    .record-card .rcrd-eyebrow {
-      font-family: var(--mono);
-      font-size: 10px;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--primary);
-      margin-bottom: 8px;
-    }
-    .record-card .formula {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 2.05rem;
-      color: var(--ink);
-      margin: 12px 0 22px;
-      line-height: 1.3;
-      letter-spacing: 0.01em;
-      text-align: center;
-      padding: 16px 18px;
-      background: var(--paper-tint);
-      border-radius: 6px;
-      border: 1px solid var(--rule);
-    }
-    .record-card .formula sub {
-      font-family: var(--serif);
-      font-style: normal;
-      font-size: 0.6em;
-      vertical-align: baseline;
-      position: relative;
-      bottom: -0.32em;
-      color: var(--primary-deep);
-      margin: 0 0.22em 0 0.06em;
-    }
-    .record-card dl {
-      margin: 0;
-      display: grid;
-      grid-template-columns: 64px 1fr;
-      row-gap: 14px;
-      column-gap: 20px;
-      font-size: 0.96rem;
-    }
-    .record-card dt {
-      font-family: var(--serif);
-      font-style: italic;
-      font-size: 1.15rem;
-      color: var(--ink);
-      padding-top: 0;
-      line-height: 1.3;
-    }
-    .record-card dt span {
-      font-family: var(--serif);
-      font-style: normal;
-      font-size: 0.6em;
-      color: var(--primary-deep);
-      vertical-align: baseline;
-      position: relative;
-      bottom: -0.32em;
-      margin-left: 0.06em;
-    }
-    .record-card dd {
-      margin: 0;
-      color: var(--ink-soft);
-      line-height: 1.55;
-    }
-    .record-card dd b { color: var(--ink); font-weight: 600; }
-
-    .three-take {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-      margin-top: 56px;
-    }
-    @media (max-width: 880px) { .three-take { grid-template-columns: 1fr; } }
-    .take {
-      padding-top: 18px;
-      border-top: 2px solid var(--ink);
-    }
-    .take .take-tag {
-      font-family: var(--mono);
-      font-size: 11px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      margin-bottom: 14px;
-    }
-    .take h3 {
-      font-family: var(--serif);
-      font-size: 1.4rem;
-      font-weight: 600;
-      letter-spacing: -0.01em;
-      margin: 0 0 10px;
-      color: var(--ink);
-      line-height: 1.2;
-    }
-    .take p {
-      margin: 0;
-      color: var(--ink-soft);
-      font-size: 0.98rem;
-      line-height: 1.6;
-    }
-
-    /* ============ Figure frame ============ */
-    .figure {
-      background: var(--paper-card);
-      border: 1px solid var(--rule);
-      border-radius: 8px;
-      padding: 32px 36px 18px;
-      box-shadow: var(--shadow-card);
-    }
-    .figure img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
-    .figure .caption {
-      margin-top: 22px;
-      padding-top: 16px;
-      border-top: 1px solid var(--rule);
-      font-family: var(--serif);
-      font-size: 0.98rem;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1.6;
-      color: var(--ink-soft);
-      text-align: left;
-    }
-    .figure .caption b {
-      font-style: normal;
-      font-family: var(--mono);
-      font-weight: 600;
-      font-size: 0.82em;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--primary-deep);
-      margin-right: 6px;
-    }
-
-    /* ============ Tables ============ */
-    .tbl-wrap {
-      overflow-x: auto;
-      border: 1px solid var(--rule);
-      border-radius: 8px;
-      background: var(--paper-card);
-    }
-    table.tbl {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.95rem;
-    }
-    table.tbl thead th {
-      padding: 14px 16px;
-      text-align: center;
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: #f9fafb;
-      border-bottom: 1px solid #111827;
-      background: var(--slate);
-    }
-    table.tbl thead tr:first-child th {
-      border-bottom: 1px solid rgba(255, 255, 255, 0.16);
-    }
-    table.tbl tbody td {
-      padding: 13px 16px;
-      text-align: center;
-      border-bottom: 1px solid var(--rule-soft);
-      font-family: var(--mono);
-      font-size: 0.92rem;
-      color: var(--ink);
-    }
-    table.tbl tbody tr:last-child td { border-bottom: none; }
-    table.tbl th.row-label, table.tbl td.row-label {
-      text-align: left;
-      font-family: var(--sans);
-      font-weight: 600;
-    }
-    table.tbl tbody td.group {
-      text-align: left;
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--primary-deep);
-      font-size: 0.95rem;
-      background: var(--paper-tint);
-    }
-    table.tbl .best { color: var(--primary); font-weight: 700; }
-    table.tbl tbody tr.us {
-      background: linear-gradient(90deg, rgba(29, 78, 216, 0.07), rgba(29, 78, 216, 0));
-    }
-    table.tbl tbody tr.us td { color: var(--ink); font-weight: 600; }
-    table.tbl tbody tr.us td.row-label::before {
-      content: "▸ ";
-      color: var(--primary);
-      font-weight: 700;
-    }
-    table.tbl .down { color: var(--red); }
-
-    /* ============ Role grid ============ */
-    .role-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0;
-      border: 1px solid var(--rule);
-      border-radius: 8px;
-      overflow: hidden;
-      background: var(--paper-card);
-    }
-    @media (max-width: 760px) { .role-grid { grid-template-columns: 1fr; } }
-    .role-cell {
-      padding: 20px 22px;
-      border-bottom: 1px solid var(--rule-soft);
-      border-right: 1px solid var(--rule-soft);
-    }
-    .role-cell:nth-child(2n) { border-right: none; }
-    @media (max-width: 760px) { .role-cell { border-right: none; } }
-    .role-cell .team {
-      display: inline-flex; align-items: center; gap: 8px;
-      font-family: var(--mono);
-      font-size: 10px;
-      font-weight: 600;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      padding: 3px 8px;
-      border-radius: 3px;
-      margin-bottom: 12px;
-    }
-    .role-cell .team.opt { color: var(--primary-deep); background: rgba(29, 78, 216, 0.10); }
-    .role-cell .team.eval { color: var(--green); background: rgba(4, 120, 87, 0.10); }
-    .role-cell .team.run { color: var(--ink); background: rgba(20, 24, 43, 0.07); }
-    .role-cell h4 {
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin: 0 0 8px;
-      color: var(--ink);
-    }
-    .role-cell p {
-      margin: 0;
-      font-size: 0.94rem;
-      line-height: 1.55;
-      color: var(--ink-soft);
-    }
-
-    /* ============ Deployment ladder ============ */
-    .ladder {
-      max-width: 760px;
-    }
-    .ladder-row {
-      display: grid;
-      grid-template-columns: 220px 1fr 80px;
-      align-items: center;
-      gap: 24px;
-      padding: 16px 0;
-      border-bottom: 1px solid var(--rule);
-    }
-    .ladder-row:first-child { border-top: 1px solid var(--rule); }
-    .ladder-row .name {
-      font-family: var(--serif);
-      font-size: 1.06rem;
-      color: var(--ink);
-    }
-    .ladder-row .track {
-      position: relative;
-      height: 22px;
-    }
-    .ladder-row .track::before {
-      content: "";
-      position: absolute;
-      left: 0; right: 0; top: 50%;
-      height: 1px;
-      background: var(--rule);
-    }
-    .ladder-row .track .fill {
-      position: absolute;
-      left: 0;
-      top: 50%;
-      transform: translateY(-50%);
-      height: 8px;
-      width: var(--pct, 0%);
-      background: var(--primary);
-      border-radius: 999px;
-    }
-    .ladder-row .track .fill::after {
-      content: "";
-      position: absolute;
-      right: -5px; top: -3px;
-      width: 14px; height: 14px;
-      background: var(--paper);
-      border: 2px solid var(--primary);
-      border-radius: 50%;
-    }
-    .ladder-row .val {
-      text-align: right;
-      font-family: var(--mono);
-      font-weight: 600;
-      font-size: 0.98rem;
-      color: var(--ink);
-    }
-    .ladder-row.avg {
-      border-top: 2px solid var(--ink);
-      border-bottom: 2px solid var(--ink);
-      margin-top: 4px;
-      padding: 18px 0;
-    }
-    .ladder-row.avg .name { color: var(--primary-deep); font-weight: 600; }
-    .ladder-row.avg .val { color: var(--primary); font-size: 1.12rem; }
-    .ladder-row.avg .track .fill { background: var(--primary-deep); height: 10px; }
-    .ladder-row.avg .track .fill::after { border-color: var(--primary-deep); }
-    @media (max-width: 600px) {
-      .ladder-row { grid-template-columns: 140px 1fr 60px; gap: 14px; }
-    }
-
-    /* ============ Pull quote ============ */
-    .pullquote {
-      font-family: var(--serif);
-      font-size: clamp(1.4rem, 2.4vw, 2rem);
-      line-height: 1.35;
-      font-style: italic;
-      font-weight: 400;
-      color: var(--ink);
-      padding: 30px 0 30px 40px;
-      border-left: 3px solid var(--primary);
-      max-width: 880px;
-    }
-    .pullquote .by {
-      display: block;
-      margin-top: 16px;
-      font-family: var(--mono);
-      font-size: 12px;
-      font-style: normal;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-    }
-
-    /* ============ BibTeX ============ */
-    .bib {
-      background: var(--ink);
-      color: var(--paper);
-      border-radius: 8px;
-      padding: 28px 32px;
-      position: relative;
-      box-shadow: var(--shadow-page);
-    }
-    .bib pre {
-      margin: 0;
-      font-family: var(--mono);
-      font-size: 0.92rem;
-      line-height: 1.65;
-      color: var(--paper);
-      white-space: pre-wrap;
-    }
-    .bib .copy {
-      position: absolute;
-      top: 20px; right: 20px;
-      padding: 7px 14px;
-      border-radius: 4px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      color: var(--paper);
-      font-family: var(--mono);
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background .15s, color .15s, border-color .15s;
-    }
-    .bib .copy:hover { background: var(--primary); border-color: var(--primary); color: var(--ink); }
-
-    /* ============ Footer ============ */
-    footer {
-      padding: 60px 32px 80px;
-      text-align: center;
-      color: var(--ink-soft);
-      font-size: 0.92rem;
-      font-family: var(--serif);
-      font-style: italic;
-      border-top: 1px solid var(--rule);
-      margin-top: 80px;
-      position: relative;
-      z-index: 1;
-    }
-    footer a { color: var(--primary-deep); text-decoration: none; border-bottom: 1px dashed var(--rule); }
-    footer a:hover { color: var(--primary); border-color: var(--primary); }
-
-    /* small screens */
-    @media (max-width: 600px) {
-      .navbar { padding: 14px 18px; }
-      .navbar.scrolled { padding: 10px 18px; }
-      .brand .org { display: none; }
-      nav.nav-links { gap: 18px; }
-      nav.nav-links .git { display: none; }
-      .hero { padding: 120px 22px 40px; }
-      .page { padding: 0 22px; }
-      .block { padding: 70px 0; }
-    }
-  </style>
+  <link rel="stylesheet" href="static/css/site.css?v=20261028">
+  <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ScholarlyArticle", "name": "SkillHone: A Harness for Continual Agent Skill Evolution Through Persistent Decision History", "url": "https://aclanthology.org/2026.emnlp-industry.105/", "author": [{"@type": "Person", "name": "Zhiwei Li"}, {"@type": "Person", "name": "Yong Hu"}], "datePublished": "2026-10", "isPartOf": {"@type": "PublicationVolume", "name": "Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing: Industry Track"}, "pageStart": "1819", "pageEnd": "1829"}</script>
 </head>
 
 <body>
+  <a class="skip-link" href="#overview">Skip to introduction</a>
 
   <!-- ============ Nav ============ -->
   <header class="navbar" id="navbar">
@@ -873,38 +49,32 @@
       <span class="org">WeChat AI · Tencent</span>
     </a>
     <nav class="nav-links" aria-label="Sections">
-      <a href="#paper">Paper</a>
-      <a href="#idea">Idea</a>
-      <a href="#harness">Harness</a>
-      <a href="#results">Results</a>
-      <a href="#cite">Cite</a>
-      <a class="git" href="https://github.com/Tencent/SkillHone" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="#overview">Overview</a><a href="#workbench">Workbench</a><a href="#results">Research</a><a href="#start">Get started</a>
+      <a href="zh.html" lang="zh-CN" aria-label="切换到中文">中文</a>
+      <a class="git" href="https://github.com/Tencent/SkillHone" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </header>
 
   <!-- ============ Hero ============ -->
   <section class="hero" id="top">
+    <a class="conference" href="https://aclanthology.org/2026.emnlp-industry.105/"><strong>Accepted at EMNLP 2026</strong><span>Industry Track</span></a>
     <h1 class="hero-title">
       Skills that remember <em>why</em>
       they changed<span style="color:var(--primary)">.</span>
     </h1>
     <p class="hero-lede">
-      <b>SkillHone</b> is a harness for continual agent skill evolution. Instead of keeping only the final artifact,
-      it records structured histories of diagnoses, revisions, redacted evidence, and outcomes &mdash; so the next
-      subagent can reuse <em>why</em>, not just what.
+      <b>SkillHone helps coding Agents continually improve complete Skill repositories</b> &mdash; instructions, scripts, references and tests.
+      Each revision keeps its diagnosis, evidence and outcome, so the next Agent can build on what was learned.
+      Review the changes in a local Issue / PR / Wiki workbench.
     </p>
 
     <div class="hero-meta">
-      <span><span class="ico"></span>Authors</span>
-      <a href="mailto:zhiweili.jay@foxmail.com">Zhiwei&nbsp;Li</a><sup>1,2*</sup>
-      <a href="mailto:rightyonghu@tencent.com">Yong&nbsp;Hu</a><sup>1</sup>
-      <span class="sep">·</span>
-      <sup>1</sup>WeChat AI, Tencent &nbsp;
-      <sup>*</sup>internship work
+      <span>Research by</span><a href="mailto:zhiweili.jay@foxmail.com">Zhiwei Li</a><a href="mailto:rightyonghu@tencent.com">Yong Hu</a>
+      <span>WeChat, Tencent</span><a href="https://aclanthology.org/2026.emnlp-industry.105/">EMNLP 2026 paper</a>
     </div>
 
     <div class="hero-actions">
-      <a class="btn ink" href="https://arxiv.org/pdf/2606.08671" target="_blank" rel="noopener" id="paper">
+      <a class="btn ink" href="https://aclanthology.org/2026.emnlp-industry.105/" target="_blank" rel="noopener" id="paper">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v6h6"/><path d="M7 21h10a2 2 0 0 0 2-2V9l-6-6H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
         Read paper
       </a>
@@ -912,53 +82,73 @@
         <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.04 1.53 1.04.9 1.52 2.34 1.08 2.92.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.04-2.69-.1-.25-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.41.1 2.66.65.7 1.04 1.6 1.04 2.69 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
         Code & skills
       </a>
-      <a class="btn outline" href="#cite">BibTeX</a>
+      <a class="btn outline" href="#start">Get started</a>
+      <a class="btn outline" href="#watch">Watch 35 seconds</a>
     </div>
 
     <div class="stat-strip" aria-label="Headline results">
       <div class="stat-cell">
         <div class="label">GAIA</div>
-        <div class="num">+15.8<span class="unit">pp</span></div>
+        <div class="num">+15.8<span class="unit">points</span></div>
         <div class="note">over the commercial deep-research agent</div>
       </div>
       <div class="stat-cell">
         <div class="label">WebWalkerQA-EN</div>
-        <div class="num">+3.2<span class="unit">pp</span></div>
+        <div class="num">+3.2<span class="unit">points</span></div>
         <div class="note">same agent, raw open-web setting</div>
       </div>
-      <div class="stat-cell">
-        <div class="label">Cross-backbone</div>
-        <div class="num">+10.2<span class="unit">pp</span></div>
-        <div class="note">transfers to Claude Sonnet 4.6, no re-opt</div>
-      </div>
-      <div class="stat-cell">
-        <div class="label">Deployment avg.</div>
-        <div class="num">+18.8<span class="unit">pp</span></div>
-        <div class="note">across 7 internal tool-mediated scenarios</div>
-      </div>
+      <div class="stat-cell"><div class="label">Whole-Skill improvement</div><div class="num text">Beyond the prompt</div><div class="note">Instructions, tools, references and regression tests</div></div>
+      <div class="stat-cell"><div class="label">Persistent decisions</div><div class="num text">Keep the reasoning</div><div class="note">Diagnoses, revisions, evidence and outcomes</div></div>
     </div>
+    <p class="result-context">Paper results relative to its commercially backed deep-research baseline. SkillHone uses a raw open-web setting without a pre-integrated search stack. <a href="#results">See the comparison and experimental context.</a></p>
   </section>
 
   <main class="page">
 
+
+    <section class="block reveal" id="overview">
+      <h2 class="head">A Skill can improve.<br>Its knowledge should accumulate.</h2>
+      <p class="lede">A missing script, a broken reference, an outdated API: real work exposes gaps that a polished instruction file alone cannot solve. SkillHone connects those failures to complete, reviewable repairs.</p>
+      <div class="overview-grid" style="margin-top:32px">
+        <article class="overview-item"><h3>Improve the complete Skill</h3><p>Work on the repository that makes the Skill useful: its entry instructions, executable tools, reference material, assets and tests.</p></article>
+        <article class="overview-item"><h3>Keep what each attempt taught</h3><p>Record the diagnosis, revision, evidence and outcome. Future Agents can inspect earlier fixes and rejected alternatives across sessions.</p></article>
+        <article class="overview-item"><h3>Review evidence with the change</h3><p>Follow a failure through its Issue, regression test, repair run and local PR. Decide from the tests and diff, with a Wiki record to return to.</p></article>
+      </div>
+      <div class="file-tags" aria-label="Skill repository contents"><code>SKILL.md</code><code>scripts/</code><code>references/</code><code>assets/</code><code>tests</code></div>
+    </section>
+
     <!-- ============ Video ============ -->
     <section class="video-block reveal" id="watch">
-      <div class="video-hero">
-        <video controls preload="metadata" poster="static/images/posters/cover-4-headline.jpg" playsinline>
-          <source src="https://github.com/user-attachments/assets/1433fd49-fffd-4c55-8b90-ab6f14967446" type="video/mp4">
-        </video>
-      </div>
-      <div class="video-row">
-        <p class="video-note">
-          A two-minute walkthrough &mdash; what changes when a harness keeps the <b>why</b> of every revision,
-          and why the same skill bundle then transfers across model backbones unchanged.
-        </p>
-        <div class="video-mini">
-          <video controls preload="metadata" poster="static/images/posters/cover-3-demo.jpg" muted loop playsinline>
-            <source src="https://github.com/user-attachments/assets/ecab6d56-b2c1-4c2b-a584-e15e4fdf21d7" type="video/mp4">
-          </video>
-        </div>
-      </div>
+      <div class="watch-heading"><h2>Meet SkillHone in 35 seconds</h2><a href="https://github.com/zwliJay/SkillHone-Project/releases/tag/media-2026-10">Video and media downloads</a></div>
+      <div class="video-hero"><video id="overview-video" controls preload="none" poster="static/images/posters/skillhone-overview.png" playsinline aria-label="SkillHone 35-second overview">
+        <source src="https://github.com/zwliJay/SkillHone-Project/releases/download/media-2026-10/skillhone-overview.mp4" type="video/mp4">
+        <p><a href="https://github.com/zwliJay/SkillHone-Project/releases/download/media-2026-10/skillhone-overview.mp4">Download the overview video.</a></p>
+      </video></div>
+      <p class="video-caption">EMNLP acceptance, paper results and the development workbench, using actual local repair records. 1080p, original music. Video is hosted separately from this website's Git repository.</p>
+      <details class="research-film"><summary>Explore the longer research walkthrough</summary><div class="video-row"><div><p class="video-note">The original two-minute research introduction explains persistent decision history and cross-backbone transfer.</p><video controls preload="none" poster="static/images/posters/cover-4-headline.jpg" playsinline aria-label="Original research walkthrough"><source src="https://github.com/user-attachments/assets/1433fd49-fffd-4c55-8b90-ab6f14967446" type="video/mp4"></video></div><div><p class="video-note">Original research demonstration</p><video controls preload="none" poster="static/images/posters/cover-3-demo.jpg" playsinline aria-label="Original research demonstration"><source src="https://github.com/user-attachments/assets/ecab6d56-b2c1-4c2b-a584-e15e4fdf21d7" type="video/mp4"></video></div></div></details>
+    </section>
+
+    <section class="block reveal" id="workbench">
+      <div class="workbench-layout"><div class="workbench-copy"><h2 class="head">See what needs attention.<br>Review what changed.</h2><p class="lede">The local workbench puts Skills and their repair records in one place.</p><ul><li><b>Skills at a glance:</b> current state, open Issues and per-Skill approval counts.</li><li><b>An approval inbox:</b> inspect tests, changed files, commits and the repair trajectory.</li><li><b>History that stays:</b> linked Wiki records preserve the reasoning behind earlier revisions.</li></ul><a href="https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md">Open the workbench installation guide</a></div>
+      <figure class="workbench-preview"><a href="static/images/product/workbench.png" target="_blank" rel="noopener" aria-label="Open full-size workbench screenshot"><img src="static/images/product/workbench.png" width="2880" height="2740" loading="lazy" alt="SkillHone development workbench showing a Skills list and two local PRs awaiting review"></a><figcaption>Development workbench with actual local records. Click to inspect the full screenshot. Local PRs belong to the Skill repository on your computer.</figcaption></figure></div>
+    </section>
+    <section class="block reveal" id="workflow">
+      <h2 class="head">From a real failure to a repair you can review.</h2>
+      <ol class="pipeline"><li><strong>Report</strong><p>Capture a reproducible failure with sanitized evidence in a local Issue.</p></li><li><strong>Reproduce</strong><p>Attach a focused regression test for the behavior that needs to change.</p></li><li><strong>Repair</strong><p>DeepSeek Harness works on an isolated branch and runs the linked tests.</p></li><li><strong>Review</strong><p>Inspect the local PR, its diff, tests and run before approving a merge.</p></li><li><strong>Remember</strong><p>Keep the linked outcome and Wiki record for the next Agent or session.</p></li></ol>
+      <p class="case-note"><b>Follow a public example.</b> The Phoenix tracing Skill referenced four documents that were never shipped. Inspect the original <a href="https://github.com/github/awesome-copilot/issues/2567">Issue #2567</a>, the <a href="https://github.com/github/awesome-copilot/pull/2568">merged fix #2568</a>, and the <a href="https://github.com/Tencent/SkillHone/tree/main/examples/phoenix-tracing">reproducible SkillHone walkthrough</a>.</p>
+    </section>
+    <section class="block reveal" id="paths">
+      <h2 class="head">Two ways to keep improving.</h2><p class="lede">Choose the workflow that matches the evidence you have.</p>
+      <div class="path-grid"><article class="path-card"><h3>Repair failures from real work</h3><p class="path-trigger">Start with a reproducible Skill defect.</p><p>Use runtime maintenance for missing files, broken scripts, stale instructions and API drift. Review the linked regression test and local PR.</p><a href="https://github.com/Tencent/SkillHone/tree/main/skills/skillhone-auto-optimization">Runtime maintenance workflow</a></article><article class="path-card"><h3>Improve a measured capability</h3><p class="path-trigger">Start with a frozen evaluator in a separate repository.</p><p>Measure a baseline, iterate on candidates, validate the proposed improvement and retain the decision history. Evaluation data stays in the Eval repository.</p><a href="https://github.com/Tencent/SkillHone/blob/main/docs/benchmark-optimization.md">Evaluation-driven workflow</a></article></div>
+    </section>
+    <section class="block reveal" id="start">
+      <h2 class="head">Start with the Agent you already use.</h2><p class="lede">Give this prompt to Codex, Claude Code, Cursor, Pi or ZCode. The installation guide covers setup and verification.</p>
+      <div class="start-panel"><div class="prompt-header"><span>Ask your coding Agent</span><button class="copy-button" data-copy="install-prompt">Copy prompt</button></div><pre class="install-prompt" id="install-prompt">Install SkillHone from https://github.com/Tencent/SkillHone, following docs/install/skillhone.md. Make the CLI and bundled Skills available to this Agent, use the documented --install-links=true Git installation command, and verify the installation.</pre></div><p class="copy-status" role="status" aria-live="polite"></p>
+      <div class="start-links"><a href="https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md">Installation guide</a><a href="https://github.com/Tencent/SkillHone">Source code</a><a href="https://github.com/Tencent/SkillHone/issues">Questions and issues</a></div>
+      <p class="result-context">Recording and reviewing Issues, PRs and Wiki records needs no model credential. Install and configure the optional DeepSeek Harness runtime when you want it to execute repairs.</p>
+      <details class="terminal-install"><summary>Prefer the terminal?</summary><pre><code>npm install -g --install-links=true git+https://github.com/Tencent/SkillHone.git#main
+skillhone --help
+skillhone setup --agent codex</code></pre><p>Replace <code>codex</code> with your Agent runtime. Follow the guide to configure models and verify a real repair-tool round trip.</p></details>
     </section>
 
     <!-- ============ Idea ============ -->
@@ -1025,7 +215,7 @@
       </p>
 
       <div class="figure" style="margin-top: 32px;">
-        <img src="static/images/figures/framework.jpg" alt="SkillHone architecture: optimization team and evaluation team connected through a dispatcher that writes a persistent decision history.">
+        <img src="static/images/figures/framework.jpg" alt="SkillHone architecture: optimization team and evaluation team connected through a dispatcher that writes a persistent decision history." width="1098" height="632" loading="lazy">
         <p class="caption">
           <b>Figure 1.</b> At each step, fresh role-bounded subagents are dispatched. Routed evidence, repository operations,
           and recorded outcomes form a persistent decision history that later agents reuse.
@@ -1042,6 +232,7 @@
         it needs for that dispatch. The optimizer/evaluator split is enforced by what each team can read or write.
       </p>
 
+      <details class="research-details"><summary>Inspect all research roles and permissions</summary>
       <div class="role-grid" style="margin-top: 28px;">
         <div class="role-cell"><span class="team opt">Optimization</span><h4>Proposer</h4><p>Reads redacted reports and decision history; writes diagnoses. No access to probe targets or validators.</p></div>
         <div class="role-cell"><span class="team opt">Optimization</span><h4>Explorer</h4><p>Searches external resources for reusable patterns when a revision needs them. No access to probe targets or validators.</p></div>
@@ -1053,13 +244,14 @@
         <div class="role-cell"><span class="team eval">Evaluation</span><h4>Reporter</h4><p>Produces redacted problem reports for the optimization side. No revision-decision authority.</p></div>
         <div class="role-cell"><span class="team eval">Evaluation</span><h4>Auditor</h4><p>Checks probe metadata, traces, and redacted reports for evaluation-side consistency. No skill-repo write access.</p></div>
         <div class="role-cell"><span class="team run">Runtime</span><h4>Dispatcher</h4><p>Creates subagents and routes artifacts between repositories. No direct skill edits; no access to unredacted probe targets.</p></div>
-      </div>
+      </div></details>
     </section>
 
     <!-- ============ Results ============ -->
     <section class="block reveal" id="results">
       <div class="label-rule">Main results</div>
-      <h2 class="head">Best average on both benchmarks &mdash; without curated search.</h2>
+      <h2 class="head">Higher benchmark averages in the paper's raw open-web setting.</h2>
+      <p class="result-context">Published in <a href="https://aclanthology.org/2026.emnlp-industry.105/">EMNLP 2026 Industry Track</a>. The results below are from the paper's evaluation, with its stated baselines and settings.</p>
       <p class="lede">
         Under the <em>raw open-web</em> setting, agents receive no pre-integrated search tools and must organise
         search, parsing, extraction, and recovery through portable skill bundles. SkillHone leads both averages,
@@ -1119,7 +311,7 @@
       <!-- Cross-backbone transfer -->
       <div class="grid-two" style="margin-top: 64px;">
         <div class="figure">
-          <img src="static/images/figures/gaia_transfer_sonnet.jpg" alt="GAIA accuracy under the development backbone (Qwen3.6-35B-A3B) and the transfer backbone (Claude Sonnet 4.6).">
+          <img src="static/images/figures/gaia_transfer_sonnet.jpg" alt="GAIA accuracy under the development backbone (Qwen3.6-35B-A3B) and the transfer backbone (Claude Sonnet 4.6)." width="1658" height="932" loading="lazy">
         </div>
         <div>
           <h3 class="subhead">Cross-backbone transfer</h3>
@@ -1175,7 +367,7 @@
       </p>
 
       <div class="figure" style="margin-top: 28px;">
-        <img src="static/images/figures/trajectory_comparison.jpg" alt="Optimisation trajectories of SkillHone and Hermes-SE.">
+        <img src="static/images/figures/trajectory_comparison.jpg" alt="Optimisation trajectories of SkillHone and Hermes-SE." width="2571" height="1252" loading="lazy">
         <p class="caption">
           <b>Figure 2.</b> Later revisions can target the offending part of a change while retaining useful edits &mdash;
           only possible when prior decisions are still inspectable.
@@ -1218,48 +410,36 @@
     <!-- ============ Cite ============ -->
     <section class="block reveal" id="cite">
       <div class="label-rule">Cite</div>
-      <h2 class="head">BibTeX</h2>
+      <h2 class="head">Cite the EMNLP 2026 paper.</h2>
+      <p><a href="https://aclanthology.org/2026.emnlp-industry.105/">ACL Anthology</a> · <a href="https://arxiv.org/abs/2606.08671">arXiv</a> · <a href="static/skillhone.bib" download>Download BibTeX</a></p>
       <div class="bib" style="margin-top: 18px;">
-        <button class="copy" id="copy-bib">Copy</button>
-        <pre id="bib-code">@article{li2026skillhone,
-  title   = {SkillHone: A Harness for Continual Agent Skill Evolution
-             Through Persistent Decision History},
-  author  = {Li, Zhiwei and Hu, Yong},
-  year    = {2026},
-  note    = {WeChat AI, Tencent Inc.},
-  url     = {https://github.com/Tencent/SkillHone}
+        <button class="copy" id="copy-bib" data-copy="bib-code">Copy</button>
+        <pre id="bib-code">@inproceedings{li-hu-2026-skillhone,
+  title = "{S}kill{H}one: A Harness for Continual Agent Skill Evolution Through Persistent Decision History",
+  author = "Li, Zhiwei and Hu, Yong",
+  editor = "Atanasova, Pepa and Haffari, Gholamreza and Wang, Minghan",
+  booktitle = "Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing: Industry Track",
+  month = oct,
+  year = "2026",
+  address = "Budapest, Hungary",
+  publisher = "Association for Computational Linguistics",
+  url = "https://aclanthology.org/2026.emnlp-industry.105/",
+  pages = "1819--1829",
+  ISBN = "979-8-89176-460-6"
 }</pre>
       </div>
     </section>
+
+    <section class="block reveal" id="faq"><h2 class="head">A few practical questions.</h2><div class="faq-list">
+      <details><summary>What changes when I already have a Skill?</summary><p>SkillHone starts from the existing repository and evidence of a failure or evaluation gap. A revision can change instructions, scripts, references, assets and tests, while preserving the decisions behind each attempt.</p></details>
+      <details><summary>Which Agents can use it?</summary><p>The local CLI is runtime-neutral. Codex, Claude Code, Cursor, Pi and ZCode are documented installation targets; other CLI-capable Agents can call the same workflow. DeepSeek Harness is the managed repair executor.</p></details>
+      <details><summary>Does it merge or push changes automatically?</summary><p>Review is the default. Automatic local merge is an explicit opt-in and requires linked tests to pass. Pushing is a separate user-authorized action. A copy-mode import also has an explicit synchronization step.</p></details>
+      <details><summary>Do the paper's gains describe every repair?</summary><p>The reported improvements belong to the paper's benchmark settings and baselines. For your own Skill, use its regression tests or a separate evaluator to measure the effect of a proposed change.</p></details>
+    </div></section>
   </main>
 
-  <footer>
-    <p>© 2026 WeChat AI, Tencent. Released under <a href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC&nbsp;BY-SA&nbsp;4.0</a>.</p>
-  </footer>
+  <footer><p>SkillHone · Zhiwei Li and Yong Hu · WeChat, Tencent</p><p><a href="https://github.com/Tencent/SkillHone">SkillHone source</a> · <a href="https://github.com/zwliJay/SkillHone-Project">Website source</a> · <a href="https://aclanthology.org/2026.emnlp-industry.105/">Paper</a> · <a href="LICENSE">Website license: MIT</a></p></footer>
 
-  <script>
-    // Sticky-nav scroll state
-    const nav = document.getElementById('navbar');
-    const onScroll = () => nav.classList.toggle('scrolled', window.scrollY > 12);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll();
-
-    // Reveal-on-scroll
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.14 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-
-    // BibTeX copy
-    document.getElementById('copy-bib').addEventListener('click', () => {
-      const txt = document.getElementById('bib-code').innerText;
-      navigator.clipboard.writeText(txt).then(() => {
-        const b = document.getElementById('copy-bib');
-        const o = b.innerText;
-        b.innerText = 'Copied ✓';
-        setTimeout(() => b.innerText = o, 1600);
-      });
-    });
-  </script>
+  <script src="static/js/site.js?v=20261028" defer></script>
 </body>
 </html>
