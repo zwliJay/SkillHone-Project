@@ -35,7 +35,7 @@
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico?v=3">
 
 
-  <link rel="stylesheet" href="static/css/site.css?v=20261028">
+  <link rel="stylesheet" href="static/css/site.css?v=20261028-native-video">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ScholarlyArticle", "name": "SkillHone: A Harness for Continual Agent Skill Evolution Through Persistent Decision History", "url": "https://aclanthology.org/2026.emnlp-industry.105/", "author": [{"@type": "Person", "name": "Zhiwei Li"}, {"@type": "Person", "name": "Yong Hu"}], "datePublished": "2026-10", "isPartOf": {"@type": "PublicationVolume", "name": "Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing: Industry Track"}, "pageStart": "1819", "pageEnd": "1829"}</script>
 </head>
 
@@ -49,7 +49,7 @@
       <span class="org">WeChat AI · Tencent</span>
     </a>
     <nav class="nav-links" aria-label="Sections">
-      <a href="#overview">Overview</a><a href="#workbench">Workbench</a><a href="#results">Research</a><a href="#start">Get started</a>
+      <a href="#overview">Why SkillHone</a><a href="#workbench">Workbench</a><a href="#results">Research</a><a href="#start">Get started</a>
       <a href="zh.html" lang="zh-CN" aria-label="切换到中文">中文</a>
       <a class="git" href="https://github.com/Tencent/SkillHone" target="_blank" rel="noopener">GitHub</a>
     </nav>
@@ -57,35 +57,18 @@
 
   <!-- ============ Hero ============ -->
   <section class="hero" id="top">
-    <a class="conference" href="https://aclanthology.org/2026.emnlp-industry.105/"><strong>Accepted at EMNLP 2026</strong><span>Industry Track</span></a>
-    <h1 class="hero-title">
-      Skills that remember <em>why</em>
-      they changed<span style="color:var(--primary)">.</span>
-    </h1>
-    <p class="hero-lede">
-      <b>SkillHone helps coding Agents continually improve complete Skill repositories</b> &mdash; instructions, scripts, references and tests.
-      Each revision keeps its diagnosis, evidence and outcome, so the next Agent can build on what was learned.
-      Review the changes in a local Issue / PR / Wiki workbench.
-    </p>
-
-    <div class="hero-meta">
-      <span>Research by</span><a href="mailto:zhiweili.jay@foxmail.com">Zhiwei Li</a><a href="mailto:rightyonghu@tencent.com">Yong Hu</a>
-      <span>WeChat, Tencent</span><a href="https://aclanthology.org/2026.emnlp-industry.105/">EMNLP 2026 paper</a>
-    </div>
-
-    <div class="hero-actions">
-      <a class="btn ink" href="https://aclanthology.org/2026.emnlp-industry.105/" target="_blank" rel="noopener" id="paper">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v6h6"/><path d="M7 21h10a2 2 0 0 0 2-2V9l-6-6H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
-        Read paper
-      </a>
-      <a class="btn outline" href="https://github.com/Tencent/SkillHone" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.04 1.53 1.04.9 1.52 2.34 1.08 2.92.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.04-2.69-.1-.25-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.41.1 2.66.65.7 1.04 1.6 1.04 2.69 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
-        Code & skills
-      </a>
-      <a class="btn outline" href="#start">Get started</a>
-      <a class="btn outline" href="#watch">Watch 35 seconds</a>
-    </div>
-
+    <a class="conference" href="https://aclanthology.org/2026.emnlp-industry.105/">Accepted · EMNLP 2026 · Industry Track<span aria-hidden="true">↗</span></a>
+    <div class="hero-grid"><div class="hero-copy">
+      <p class="product-name">SkillHone<span>↗</span></p>
+      <h1 class="hero-title">Skills improve.<br><span>The knowledge stays.</span></h1>
+      <p class="hero-lede">Turn real failures into tested improvements. SkillHone evolves complete Skill repositories and preserves every decision, so the next run builds on the last.</p>
+      <div class="hero-actions"><a class="btn ink" href="#start">Get started <span aria-hidden="true">→</span></a><a class="btn outline" id="paper" href="https://aclanthology.org/2026.emnlp-industry.105/">Read the paper ↗</a></div>
+      <p class="agent-line">Codex · Claude Code · Cursor · Pi · ZCode</p>
+    </div><div class="hero-film" id="watch">
+      <div class="film-label"><span>SKILLHONE / IN MOTION</span><span>00:35</span></div>
+      <div class="video-hero"><video id="overview-video" controls preload="metadata" poster="static/images/posters/skillhone-overview.png" playsinline aria-label="Play the 35-second film"><source src="https://github.com/user-attachments/assets/69bafb25-5ba9-44cb-b5ff-8a2a94f8e51a" type="video/mp4"></video><button class="film-play" hidden data-play="overview-video" aria-label="Play the 35-second film"><span class="play-icon" aria-hidden="true">▶</span><span>Play the 35-second film</span></button></div>
+      <p class="film-caption">Real failure → tested repair → reviewable PR</p><p class="play-status" role="status"></p>
+    </div></div>
     <div class="stat-strip" aria-label="Headline results">
       <div class="stat-cell">
         <div class="label">GAIA</div>
@@ -101,12 +84,13 @@
       <div class="stat-cell"><div class="label">Persistent decisions</div><div class="num text">Keep the reasoning</div><div class="note">Diagnoses, revisions, evidence and outcomes</div></div>
     </div>
     <p class="result-context">Paper results relative to its commercially backed deep-research baseline. SkillHone uses a raw open-web setting without a pre-integrated search stack. <a href="#results">See the comparison and experimental context.</a></p>
+
   </section>
 
   <main class="page">
 
 
-    <section class="block reveal" id="overview">
+    <section class="block reveal" id="overview" data-section="01">
       <h2 class="head">A Skill can improve.<br>Its knowledge should accumulate.</h2>
       <p class="lede">A missing script, a broken reference, an outdated API: real work exposes gaps that a polished instruction file alone cannot solve. SkillHone connects those failures to complete, reviewable repairs.</p>
       <div class="overview-grid" style="margin-top:32px">
@@ -118,30 +102,23 @@
     </section>
 
     <!-- ============ Video ============ -->
-    <section class="video-block reveal" id="watch">
-      <div class="watch-heading"><h2>Meet SkillHone in 35 seconds</h2><a href="https://github.com/zwliJay/SkillHone-Project/releases/tag/media-2026-10">Video and media downloads</a></div>
-      <div class="video-hero"><video id="overview-video" controls preload="none" poster="static/images/posters/skillhone-overview.png" playsinline aria-label="SkillHone 35-second overview">
-        <source src="https://github.com/zwliJay/SkillHone-Project/releases/download/media-2026-10/skillhone-overview.mp4" type="video/mp4">
-        <p><a href="https://github.com/zwliJay/SkillHone-Project/releases/download/media-2026-10/skillhone-overview.mp4">Download the overview video.</a></p>
-      </video></div>
-      <p class="video-caption">EMNLP acceptance, paper results and the development workbench, using actual local repair records. 1080p, original music. Video is hosted separately from this website's Git repository.</p>
-      <details class="research-film"><summary>Explore the longer research walkthrough</summary><div class="video-row"><div><p class="video-note">The original two-minute research introduction explains persistent decision history and cross-backbone transfer.</p><video controls preload="none" poster="static/images/posters/cover-4-headline.jpg" playsinline aria-label="Original research walkthrough"><source src="https://github.com/user-attachments/assets/1433fd49-fffd-4c55-8b90-ab6f14967446" type="video/mp4"></video></div><div><p class="video-note">Original research demonstration</p><video controls preload="none" poster="static/images/posters/cover-3-demo.jpg" playsinline aria-label="Original research demonstration"><source src="https://github.com/user-attachments/assets/ecab6d56-b2c1-4c2b-a584-e15e4fdf21d7" type="video/mp4"></video></div></div></details>
+    <section class="video-block reveal" id="research-film"><details class="research-film"><summary>Explore the longer research walkthrough</summary><div class="video-row"><div><p class="video-note">The original two-minute research introduction explains persistent decision history and cross-backbone transfer.</p><video controls preload="none" poster="static/images/posters/cover-4-headline.jpg" playsinline aria-label="Original research walkthrough"><source src="https://github.com/user-attachments/assets/1433fd49-fffd-4c55-8b90-ab6f14967446" type="video/mp4"></video></div><div><p class="video-note">Original research demonstration</p><video controls preload="none" poster="static/images/posters/cover-3-demo.jpg" playsinline aria-label="Original research demonstration"><source src="https://github.com/user-attachments/assets/ecab6d56-b2c1-4c2b-a584-e15e4fdf21d7" type="video/mp4"></video></div></div></details>
     </section>
 
-    <section class="block reveal" id="workbench">
+    <section class="block reveal" id="workbench" data-section="02">
       <div class="workbench-layout"><div class="workbench-copy"><h2 class="head">See what needs attention.<br>Review what changed.</h2><p class="lede">The local workbench puts Skills and their repair records in one place.</p><ul><li><b>Skills at a glance:</b> current state, open Issues and per-Skill approval counts.</li><li><b>An approval inbox:</b> inspect tests, changed files, commits and the repair trajectory.</li><li><b>History that stays:</b> linked Wiki records preserve the reasoning behind earlier revisions.</li></ul><a href="https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md">Open the workbench installation guide</a></div>
       <figure class="workbench-preview"><a href="static/images/product/workbench.png" target="_blank" rel="noopener" aria-label="Open full-size workbench screenshot"><img src="static/images/product/workbench.png" width="2880" height="2740" loading="lazy" alt="SkillHone development workbench showing a Skills list and two local PRs awaiting review"></a><figcaption>Development workbench with actual local records. Click to inspect the full screenshot. Local PRs belong to the Skill repository on your computer.</figcaption></figure></div>
     </section>
-    <section class="block reveal" id="workflow">
+    <section class="block reveal" id="workflow" data-section="03">
       <h2 class="head">From a real failure to a repair you can review.</h2>
       <ol class="pipeline"><li><strong>Report</strong><p>Capture a reproducible failure with sanitized evidence in a local Issue.</p></li><li><strong>Reproduce</strong><p>Attach a focused regression test for the behavior that needs to change.</p></li><li><strong>Repair</strong><p>DeepSeek Harness works on an isolated branch and runs the linked tests.</p></li><li><strong>Review</strong><p>Inspect the local PR, its diff, tests and run before approving a merge.</p></li><li><strong>Remember</strong><p>Keep the linked outcome and Wiki record for the next Agent or session.</p></li></ol>
       <p class="case-note"><b>Follow a public example.</b> The Phoenix tracing Skill referenced four documents that were never shipped. Inspect the original <a href="https://github.com/github/awesome-copilot/issues/2567">Issue #2567</a>, the <a href="https://github.com/github/awesome-copilot/pull/2568">merged fix #2568</a>, and the <a href="https://github.com/Tencent/SkillHone/tree/main/examples/phoenix-tracing">reproducible SkillHone walkthrough</a>.</p>
     </section>
-    <section class="block reveal" id="paths">
+    <section class="block reveal" id="paths" data-section="04">
       <h2 class="head">Two ways to keep improving.</h2><p class="lede">Choose the workflow that matches the evidence you have.</p>
       <div class="path-grid"><article class="path-card"><h3>Repair failures from real work</h3><p class="path-trigger">Start with a reproducible Skill defect.</p><p>Use runtime maintenance for missing files, broken scripts, stale instructions and API drift. Review the linked regression test and local PR.</p><a href="https://github.com/Tencent/SkillHone/tree/main/skills/skillhone-auto-optimization">Runtime maintenance workflow</a></article><article class="path-card"><h3>Improve a measured capability</h3><p class="path-trigger">Start with a frozen evaluator in a separate repository.</p><p>Measure a baseline, iterate on candidates, validate the proposed improvement and retain the decision history. Evaluation data stays in the Eval repository.</p><a href="https://github.com/Tencent/SkillHone/blob/main/docs/benchmark-optimization.md">Evaluation-driven workflow</a></article></div>
     </section>
-    <section class="block reveal" id="start">
+    <section class="block reveal" id="start" data-section="05">
       <h2 class="head">Start with the Agent you already use.</h2><p class="lede">Give this prompt to Codex, Claude Code, Cursor, Pi or ZCode. The installation guide covers setup and verification.</p>
       <div class="start-panel"><div class="prompt-header"><span>Ask your coding Agent</span><button class="copy-button" data-copy="install-prompt">Copy prompt</button></div><pre class="install-prompt" id="install-prompt">Install SkillHone from https://github.com/Tencent/SkillHone, following docs/install/skillhone.md. Make the CLI and bundled Skills available to this Agent, use the documented --install-links=true Git installation command, and verify the installation.</pre></div><p class="copy-status" role="status" aria-live="polite"></p>
       <div class="start-links"><a href="https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md">Installation guide</a><a href="https://github.com/Tencent/SkillHone">Source code</a><a href="https://github.com/Tencent/SkillHone/issues">Questions and issues</a></div>
@@ -248,7 +225,7 @@ skillhone setup --agent codex</code></pre><p>Replace <code>codex</code> with you
     </section>
 
     <!-- ============ Results ============ -->
-    <section class="block reveal" id="results">
+    <section class="block reveal" id="results" data-section="06">
       <div class="label-rule">Main results</div>
       <h2 class="head">Higher benchmark averages in the paper's raw open-web setting.</h2>
       <p class="result-context">Published in <a href="https://aclanthology.org/2026.emnlp-industry.105/">EMNLP 2026 Industry Track</a>. The results below are from the paper's evaluation, with its stated baselines and settings.</p>
@@ -440,6 +417,6 @@ skillhone setup --agent codex</code></pre><p>Replace <code>codex</code> with you
 
   <footer><p>SkillHone · Zhiwei Li and Yong Hu · WeChat, Tencent</p><p><a href="https://github.com/Tencent/SkillHone">SkillHone source</a> · <a href="https://github.com/zwliJay/SkillHone-Project">Website source</a> · <a href="https://aclanthology.org/2026.emnlp-industry.105/">Paper</a> · <a href="LICENSE">Website license: MIT</a></p></footer>
 
-  <script src="static/js/site.js?v=20261028" defer></script>
+  <script src="static/js/site.js?v=20261028-native-video" defer></script>
 </body>
 </html>

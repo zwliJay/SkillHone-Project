@@ -18,3 +18,11 @@ document.querySelectorAll('[data-copy]').forEach(button=>button.addEventListener
   catch{if(status)status.textContent=chinese?'自动复制不可用，请选择并复制上方文字。':'Copy is unavailable. Select and copy the text above.';else button.textContent=chinese?'请手动复制':'Select text to copy';}
   setTimeout(()=>{button.textContent=original;},2200);
 }));
+document.querySelectorAll('[data-play]').forEach(button=>{
+ const video=document.getElementById(button.dataset.play);if(!video)return;
+ button.hidden=false;
+ const status=button.closest('.hero-film')?.querySelector('.play-status');
+ button.addEventListener('click',async()=>{try{await video.play();button.hidden=true;}catch{button.hidden=true;video.controls=true;if(status)status.textContent=chinese?'请点击视频左下角的播放按钮。':'Use the play control at the bottom left of the video.';}});
+ video.addEventListener('play',()=>{button.hidden=true;if(status)status.textContent='';});
+ video.addEventListener('ended',()=>{button.hidden=false;});
+});

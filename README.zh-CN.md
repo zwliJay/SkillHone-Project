@@ -1,5 +1,7 @@
 # SkillHone
 
+[![EMNLP 2026 Industry Track](https://img.shields.io/badge/EMNLP_2026-Industry_Track-286c3b)](https://aclanthology.org/2026.emnlp-industry.105/)
+
 **让完整的 Agent Skills 持续变好，让学到的经验留下来。**
 
 [项目官网](https://zwlijay.github.io/SkillHone-Project/zh.html) · [English](README.md) · [源代码](https://github.com/Tencent/SkillHone) · [正式论文](https://aclanthology.org/2026.emnlp-industry.105/)
@@ -14,9 +16,7 @@ SkillHone 是一个持续改进 Agent Skills 的框架。Agent 在真实任务�
 
 ## 先看一次完整过程
 
-[![观看 35 秒 SkillHone 宣传片](static/images/posters/skillhone-overview.png)](https://github.com/zwliJay/SkillHone-Project/releases/tag/media-2026-10)
-
-[观看／下载 35 秒介绍](https://github.com/zwliJay/SkillHone-Project/releases/download/media-2026-10/skillhone-overview.mp4)。视频通过外部 Release 附件托管，仓库不存放视频或 GIF。
+https://github.com/user-attachments/assets/69bafb25-5ba9-44cb-b5ff-8a2a94f8e51a
 
 **报告问题 → 复现故障 → 执行修复 → 审阅变更 → 保留经验。**
 

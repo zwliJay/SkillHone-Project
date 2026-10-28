@@ -35,7 +35,7 @@
   <link rel="icon" type="image/x-icon" href="static/images/favicon.ico?v=3">
 
 
-  <link rel="stylesheet" href="static/css/site.css?v=20261028">
+  <link rel="stylesheet" href="static/css/site.css?v=20261028-native-video">
   <script type="application/ld+json">{"@context": "https://schema.org", "@type": "ScholarlyArticle", "name": "SkillHone: A Harness for Continual Agent Skill Evolution Through Persistent Decision History", "url": "https://aclanthology.org/2026.emnlp-industry.105/", "author": [{"@type": "Person", "name": "Zhiwei Li"}, {"@type": "Person", "name": "Yong Hu"}], "datePublished": "2026-10", "isPartOf": {"@type": "PublicationVolume", "name": "Proceedings of the 2026 Conference on Empirical Methods in Natural Language Processing: Industry Track"}, "pageStart": "1819", "pageEnd": "1829"}</script>
 </head>
 
@@ -49,7 +49,7 @@
       <span class="org">WeChat AI · Tencent</span>
     </a>
     <nav class="nav-links" aria-label="页面导航">
-      <a href="#overview">介绍</a><a href="#workbench">工作台</a><a href="#results">论文</a><a href="#start">开始使用</a>
+      <a href="#overview">项目优势</a><a href="#workbench">工作台</a><a href="#results">论文</a><a href="#start">开始使用</a>
       <a href="index.html" lang="en" aria-label="Switch to English">English</a>
       <a class="git" href="https://github.com/Tencent/SkillHone" target="_blank" rel="noopener">GitHub</a>
     </nav>
@@ -57,33 +57,18 @@
 
   <!-- ============ Hero ============ -->
   <section class="hero" id="top">
-    <a class="conference" href="https://aclanthology.org/2026.emnlp-industry.105/"><strong>论文被 EMNLP 2026 接收</strong><span>Industry Track</span></a>
-    <h1 class="hero-title">
-      Skills 持续变好，<br><em>经验也留下来。</em>
-    </h1>
-    <p class="hero-lede">
-      <b>SkillHone 帮助 Coding Agent 持续改进完整的 Skill 仓库</b>，包括说明、脚本、引用资料与测试。
-      每次修订都留下诊断、证据与结果，后续 Agent 可以沿用已有判断；你可以在本地 Issue / PR / Wiki 工作台中审阅变更。
-    </p>
-
-    <div class="hero-meta">
-      <span>作者</span><a href="mailto:zhiweili.jay@foxmail.com">Zhiwei Li</a><a href="mailto:rightyonghu@tencent.com">Yong Hu</a>
-      <span>WeChat, Tencent</span><a href="https://aclanthology.org/2026.emnlp-industry.105/">EMNLP 2026 论文</a>
-    </div>
-
-    <div class="hero-actions">
-      <a class="btn ink" href="https://aclanthology.org/2026.emnlp-industry.105/" target="_blank" rel="noopener" id="paper">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3v6h6"/><path d="M7 21h10a2 2 0 0 0 2-2V9l-6-6H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2z"/></svg>
-        阅读论文
-      </a>
-      <a class="btn outline" href="https://github.com/Tencent/SkillHone" target="_blank" rel="noopener">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.04 1.53 1.04.9 1.52 2.34 1.08 2.92.83.09-.65.35-1.08.63-1.33-2.22-.25-4.56-1.11-4.56-4.94 0-1.09.39-1.99 1.04-2.69-.1-.25-.45-1.28.1-2.66 0 0 .84-.27 2.75 1.03a9.5 9.5 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.41.1 2.66.65.7 1.04 1.6 1.04 2.69 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.86v2.75c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
-        代码与 Skills
-      </a>
-      <a class="btn outline" href="#start">开始使用</a>
-      <a class="btn outline" href="#watch">观看 35 秒介绍</a>
-    </div>
-
+    <a class="conference" href="https://aclanthology.org/2026.emnlp-industry.105/">已接收 · EMNLP 2026 · Industry Track<span aria-hidden="true">↗</span></a>
+    <div class="hero-grid"><div class="hero-copy">
+      <p class="product-name">SkillHone<span>↗</span></p>
+      <h1 class="hero-title">让 Skill 持续进化。<br><span>让经验持续积累。</span></h1>
+      <p class="hero-lede">从一次真实故障，到经过验证的修复。SkillHone 改进完整的 Skill 仓库，并保留每次决策，让下一次执行从已有经验出发。</p>
+      <div class="hero-actions"><a class="btn ink" href="#start">开始使用 <span aria-hidden="true">→</span></a><a class="btn outline" id="paper" href="https://aclanthology.org/2026.emnlp-industry.105/">阅读论文 ↗</a></div>
+      <p class="agent-line">Codex · Claude Code · Cursor · Pi · ZCode</p>
+    </div><div class="hero-film" id="watch">
+      <div class="film-label"><span>SKILLHONE / IN MOTION</span><span>00:35</span></div>
+      <div class="video-hero"><video id="overview-video" controls preload="metadata" poster="static/images/posters/skillhone-overview.png" playsinline aria-label="播放 35 秒介绍"><source src="https://github.com/user-attachments/assets/69bafb25-5ba9-44cb-b5ff-8a2a94f8e51a" type="video/mp4"></video><button class="film-play" hidden data-play="overview-video" aria-label="播放 35 秒介绍"><span class="play-icon" aria-hidden="true">▶</span><span>播放 35 秒介绍</span></button></div>
+      <p class="film-caption">真实故障 → 修复验证 → 可审阅 PR</p><p class="play-status" role="status"></p>
+    </div></div>
     <div class="stat-strip" aria-label="论文结果与项目特点">
       <div class="stat-cell">
         <div class="label">GAIA</div>
@@ -99,12 +84,13 @@
       <div class="stat-cell"><div class="label">持久化决策历史</div><div class="num text">保留每次判断</div><div class="note">诊断、修订、证据与结果</div></div>
     </div>
     <p class="result-context">数值来自论文中的实验，相比其中的商业 Deep Research Agent 基线；SkillHone 无需预先集成搜索栈。<a href="#results">查看实验对比与条件。</a></p>
+
   </section>
 
   <main class="page">
 
 
-    <section class="block reveal" id="overview">
+    <section class="block reveal" id="overview" data-section="01">
       <h2 class="head">Skill 会迭代，<br>学到的经验也应该积累。</h2>
       <p class="lede">脚本缺失、引用失效、API 变化，真实工作会暴露 Skill 的缺口。SkillHone 把这些故障与完整、可审阅的修复连接起来。</p>
       <div class="overview-grid" style="margin-top:32px">
@@ -116,30 +102,23 @@
     </section>
 
     <!-- ============ Video ============ -->
-    <section class="video-block reveal" id="watch">
-      <div class="watch-heading"><h2>35 秒了解 SkillHone</h2><a href="https://github.com/zwliJay/SkillHone-Project/releases/tag/media-2026-10">视频与媒体下载</a></div>
-      <div class="video-hero"><video id="overview-video" controls preload="none" poster="static/images/posters/skillhone-overview.png" playsinline aria-label="SkillHone 35-second overview">
-        <source src="https://github.com/zwliJay/SkillHone-Project/releases/download/media-2026-10/skillhone-overview.mp4" type="video/mp4">
-        <p><a href="https://github.com/zwliJay/SkillHone-Project/releases/download/media-2026-10/skillhone-overview.mp4">Download the overview video.</a></p>
-      </video></div>
-      <p class="video-caption">介绍 EMNLP 接收、论文结果与开发版工作台，使用真实的本地修复记录。1080p，配原创音乐；视频通过外部附件托管，不进入网站 Git 仓库。</p>
-      <details class="research-film"><summary>展开观看更完整的研究介绍</summary><div class="video-row"><div><p class="video-note">原有两分钟研究介绍，进一步解释持久化决策历史和跨模型迁移。</p><video controls preload="none" poster="static/images/posters/cover-4-headline.jpg" playsinline aria-label="Original research walkthrough"><source src="https://github.com/user-attachments/assets/1433fd49-fffd-4c55-8b90-ab6f14967446" type="video/mp4"></video></div><div><p class="video-note">原有研究演示</p><video controls preload="none" poster="static/images/posters/cover-3-demo.jpg" playsinline aria-label="原有研究演示"><source src="https://github.com/user-attachments/assets/ecab6d56-b2c1-4c2b-a584-e15e4fdf21d7" type="video/mp4"></video></div></div></details>
+    <section class="video-block reveal" id="research-film"><details class="research-film"><summary>展开观看更完整的研究介绍</summary><div class="video-row"><div><p class="video-note">原有两分钟研究介绍，进一步解释持久化决策历史和跨模型迁移。</p><video controls preload="none" poster="static/images/posters/cover-4-headline.jpg" playsinline aria-label="Original research walkthrough"><source src="https://github.com/user-attachments/assets/1433fd49-fffd-4c55-8b90-ab6f14967446" type="video/mp4"></video></div><div><p class="video-note">原有研究演示</p><video controls preload="none" poster="static/images/posters/cover-3-demo.jpg" playsinline aria-label="原有研究演示"><source src="https://github.com/user-attachments/assets/ecab6d56-b2c1-4c2b-a584-e15e4fdf21d7" type="video/mp4"></video></div></div></details>
     </section>
 
-    <section class="block reveal" id="workbench">
+    <section class="block reveal" id="workbench" data-section="02">
       <div class="workbench-layout"><div class="workbench-copy"><h2 class="head">看清哪些 Skills 需要处理，<br>审阅每一次修复。</h2><p class="lede">本地工作台把 Skills 与各自的修复记录放在一起。</p><ul><li><b>Skills 总览：</b> 当前状态、未关闭的 Issue，以及每个 Skill 的待审批数量。</li><li><b>审批收件箱：</b> 查看测试、变更文件、提交和修复轨迹，再决定是否合并。</li><li><b>保留修复历史：</b> 关联的 Wiki 记录留下每次修订背后的判断。</li></ul><a href="https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md">查看工作台安装指南</a></div>
       <figure class="workbench-preview"><a href="static/images/product/workbench.png" target="_blank" rel="noopener" aria-label="Open full-size workbench screenshot"><img src="static/images/product/workbench.png" width="2880" height="2740" loading="lazy" alt="SkillHone development workbench showing a Skills list and two local PRs awaiting review"></a><figcaption>开发版工作台与真实本地记录。点击查看完整截图；本地 PR 属于你电脑上的 Skill 仓库。</figcaption></figure></div>
     </section>
-    <section class="block reveal" id="workflow">
+    <section class="block reveal" id="workflow" data-section="03">
       <h2 class="head">从真实故障，到可审阅的修复。</h2>
       <ol class="pipeline"><li><strong>报告问题</strong><p>将可复现故障及脱敏证据记录为本地 Issue。</p></li><li><strong>复现故障</strong><p>关联一项聚焦的回归测试，明确需要改变的行为。</p></li><li><strong>执行修复</strong><p>DeepSeek Harness 在独立分支中修复，并运行关联测试。</p></li><li><strong>审阅变更</strong><p>检查本地 PR、Diff、测试与 Run，再批准合并。</p></li><li><strong>保留经验</strong><p>把结果与 Wiki 记录留给后续 Agent 和会话。</p></li></ol>
       <p class="case-note"><b>跟着公开案例走一遍。</b> Phoenix tracing Skill 引用了四份未随包发布的文档。可以查看原始 <a href="https://github.com/github/awesome-copilot/issues/2567">Issue #2567</a>、<a href="https://github.com/github/awesome-copilot/pull/2568">已合并的修复 #2568</a>，以及 <a href="https://github.com/Tencent/SkillHone/tree/main/examples/phoenix-tracing">SkillHone 复现指南</a>。</p>
     </section>
-    <section class="block reveal" id="paths">
+    <section class="block reveal" id="paths" data-section="04">
       <h2 class="head">两种持续改进路径。</h2><p class="lede">根据你手头的证据选择工作流。</p>
       <div class="path-grid"><article class="path-card"><h3>修复真实任务中的故障</h3><p class="path-trigger">从可复现的 Skill 缺陷开始。</p><p>适用于文件缺失、脚本损坏、说明过时或 API 漂移。通过关联的回归测试和本地 PR 审阅修复。</p><a href="https://github.com/Tencent/SkillHone/tree/main/skills/skillhone-auto-optimization">运行时维护工作流</a></article><article class="path-card"><h3>通过评估改进能力</h3><p class="path-trigger">从独立仓库中的冻结评估器开始。</p><p>测量基线、迭代候选、验证优化，并保留决策历史。评估数据保留在独立的 Eval 仓库中。</p><a href="https://github.com/Tencent/SkillHone/blob/main/docs/benchmark-optimization.md">评估驱动优化工作流</a></article></div>
     </section>
-    <section class="block reveal" id="start">
+    <section class="block reveal" id="start" data-section="05">
       <h2 class="head">从你正在使用的 Agent 开始。</h2><p class="lede">把下面这段话交给 Codex、Claude Code、Cursor、Pi 或 ZCode。安装指南包含环境设置与验证步骤。</p>
       <div class="start-panel"><div class="prompt-header"><span>交给你的 Coding Agent</span><button class="copy-button" data-copy="install-prompt">复制提示词</button></div><pre class="install-prompt" id="install-prompt">从 https://github.com/Tencent/SkillHone 安装 SkillHone，遵循 docs/install/skillhone.md，让当前 Agent 能发现 CLI 和内置 Skills。使用文档中的 --install-links=true Git 安装命令，并验证安装结果。</pre></div><p class="copy-status" role="status" aria-live="polite"></p>
       <div class="start-links"><a href="https://github.com/Tencent/SkillHone/blob/main/docs/install/skillhone.md">安装指南</a><a href="https://github.com/Tencent/SkillHone">源代码</a><a href="https://github.com/Tencent/SkillHone/issues">问题与反馈</a></div>
@@ -151,7 +130,7 @@ skillhone setup --agent codex</code></pre><p>将 <code>codex</code> 换成你使
 
 
     <section class="block reveal" id="idea"><div class="grid-two"><div><h2 class="head">Diff 留下了变更，<br>决策历史留下了原因。</h2><p class="lede">SkillHone 把每次开发步骤表示为结构化的决策记录。当任务和环境变化时，后续 Agent 可以查阅既有历史，判断相似修复是否尝试过，以及某个方案为何被否决。</p><p>论文中的优化与评估角色拥有不同权限。优化方使用脱敏反馈修订 Skill，评估方保留原始评估材料，二者通过调度器交换结果。</p></div><aside class="record-card"><div class="rcrd-eyebrow">持久化决策记录</div><div class="formula">h<sub>t</sub> = (q<sub>t</sub>, r<sub>t</sub>, e<sub>t</sub>, o<sub>t</sub>)</div><dl><dt>q<span>t</span></dt><dd><b>诊断：</b>当前问题是什么。</dd><dt>r<span>t</span></dt><dd><b>修订：</b>候选变更是什么。</dd><dt>e<span>t</span></dt><dd><b>证据：</b>评估器返回的脱敏反馈。</dd><dt>o<span>t</span></dt><dd><b>结果：</b>接受、继续修订、拒绝或暂缓。</dd></dl></aside></div><div class="figure" style="margin-top:32px"><img src="static/images/figures/framework.jpg" loading="lazy" alt="SkillHone 论文架构：优化团队与评估团队通过调度器交换反馈，形成持久化决策历史" width="1098" height="632"><p class="caption">论文架构图。优化与评估分工，以及跨会话保留的决策历史。</p></div></section>
-    <section class="block reveal" id="results"><h2 class="head">EMNLP 2026 Industry Track。</h2><p class="lede">论文在 GAIA 与 WebWalkerQA-EN 上报告了下列平均准确率。SkillHone 采用无预先集成搜索栈的原始开放网络设置；对照的商业 Deep Research Agent 保留其检索栈。</p><div class="tbl-wrap" style="margin-top:28px"><table class="tbl"><caption class="caption">论文表 1：主要实验结果，单位为百分比。</caption><thead><tr><th class="row-label">系统与设置</th><th>GAIA</th><th>WebWalkerQA-EN</th></tr></thead><tbody><tr><td class="row-label">商业 Deep Research Agent（集成搜索）</td><td>48.8</td><td>63.2</td></tr><tr class="us"><td class="row-label">SkillHone（原始开放网络）</td><td class="best">64.6</td><td class="best">66.4</td></tr><tr><td class="row-label">准确率提高</td><td>+15.8 分</td><td>+3.2 分</td></tr></tbody></table></div><p class="result-context">论文还报告了跨模型迁移、消融实验和七个内部场景的部署评估。上述数字对应论文中的设置与基线；自己的 Skill 可以通过关联测试或独立评估器测量优化效果。</p><div class="start-links"><a href="https://aclanthology.org/2026.emnlp-industry.105/">阅读正式论文</a><a href="index.html#results" lang="en">完整实验表与分析（English）</a></div></section>
+    <section class="block reveal" id="results" data-section="06"><h2 class="head">EMNLP 2026 Industry Track。</h2><p class="lede">论文在 GAIA 与 WebWalkerQA-EN 上报告了下列平均准确率。SkillHone 采用无预先集成搜索栈的原始开放网络设置；对照的商业 Deep Research Agent 保留其检索栈。</p><div class="tbl-wrap" style="margin-top:28px"><table class="tbl"><caption class="caption">论文表 1：主要实验结果，单位为百分比。</caption><thead><tr><th class="row-label">系统与设置</th><th>GAIA</th><th>WebWalkerQA-EN</th></tr></thead><tbody><tr><td class="row-label">商业 Deep Research Agent（集成搜索）</td><td>48.8</td><td>63.2</td></tr><tr class="us"><td class="row-label">SkillHone（原始开放网络）</td><td class="best">64.6</td><td class="best">66.4</td></tr><tr><td class="row-label">准确率提高</td><td>+15.8 分</td><td>+3.2 分</td></tr></tbody></table></div><p class="result-context">论文还报告了跨模型迁移、消融实验和七个内部场景的部署评估。上述数字对应论文中的设置与基线；自己的 Skill 可以通过关联测试或独立评估器测量优化效果。</p><div class="start-links"><a href="https://aclanthology.org/2026.emnlp-industry.105/">阅读正式论文</a><a href="index.html#results" lang="en">完整实验表与分析（English）</a></div></section>
 <section class="block reveal" id="cite"><h2 class="head">引用论文。</h2><p><a href="https://aclanthology.org/2026.emnlp-industry.105/">ACL Anthology</a> · <a href="https://arxiv.org/abs/2606.08671">arXiv</a> · <a href="static/skillhone.bib" download>下载 BibTeX</a></p><div class="bib"><button class="copy" data-copy="bib-code">复制</button><pre id="bib-code">@inproceedings{li-hu-2026-skillhone,
   title = "{S}kill{H}one: A Harness for Continual Agent Skill Evolution Through Persistent Decision History",
   author = "Li, Zhiwei and Hu, Yong",
@@ -166,4 +145,4 @@ skillhone setup --agent codex</code></pre><p>将 <code>codex</code> 换成你使
   ISBN = "979-8-89176-460-6"
 }</pre></div><p class="copy-status" role="status" aria-live="polite"></p></section>
 <section class="block reveal" id="faq"><h2 class="head">开始之前，你可能想知道。</h2><div class="faq-list"><details><summary>已经有 Skill 了，还能用吗？</summary><p>可以。SkillHone 从现有 Skill 仓库与故障或评估证据出发；修订可以覆盖说明、脚本、引用、资源与测试，同时留下每次尝试的判断。</p></details><details><summary>支持哪些 Agent？</summary><p>本地 CLI 不绑定某一种 Agent。安装文档覆盖 Codex、Claude Code、Cursor、Pi 和 ZCode，其他能够调用 CLI 的 Agent 也可以使用同一工作流。DeepSeek Harness 承担修复执行。</p></details><details><summary>会自动合并或 push 吗？</summary><p>默认先审阅。自动本地合并需要主动开启，而且关联测试必须通过；push 是用户单独授权的操作。以复制模式导入的 Skill 还需要明确同步回原安装位置。</p></details><details><summary>论文提升是否等于每次修复的提升？</summary><p>论文数字对应其数据集、设置和基线。实际修复应通过关联的回归测试，或使用独立评估器测量效果。</p></details></div></section>
-</main><footer><p>SkillHone · Zhiwei Li / Yong Hu · WeChat, Tencent</p><p><a href="https://github.com/Tencent/SkillHone">SkillHone 源代码</a> · <a href="https://github.com/zwliJay/SkillHone-Project">网站源代码</a> · <a href="https://aclanthology.org/2026.emnlp-industry.105/">论文</a> · <a href="LICENSE">网站许可证：MIT</a></p></footer><script src="static/js/site.js?v=20261028" defer></script></body></html>
+</main><footer><p>SkillHone · Zhiwei Li / Yong Hu · WeChat, Tencent</p><p><a href="https://github.com/Tencent/SkillHone">SkillHone 源代码</a> · <a href="https://github.com/zwliJay/SkillHone-Project">网站源代码</a> · <a href="https://aclanthology.org/2026.emnlp-industry.105/">论文</a> · <a href="LICENSE">网站许可证：MIT</a></p></footer><script src="static/js/site.js?v=20261028-native-video" defer></script></body></html>

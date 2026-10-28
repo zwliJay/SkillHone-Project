@@ -922,3 +922,65 @@ footer { margin-top:20px; }
 .navbar.scrolled { padding:18px 34px; }
 .role-cell .team,.rcrd-eyebrow,.take-tag { font-size:12px; }
 @media(max-width:760px) { .navbar,.navbar.scrolled { padding:10px 22px; } }
+
+/* Product presentation: bold typography, numbered evidence and an immediate film. */
+:root { --paper:#fcfcf9;--paper-soft:#fcfcf9;--paper-card:#fff;--paper-tint:#edf2e9;--ink:#17211b;--ink-soft:#526057;--ink-quiet:#738076;--rule:#d5ddd2;--rule-soft:#edf0e9;--primary:#39764b;--primary-deep:#245434;--primary-soft:#91d6a3;--primary-tint:#edf5e9;--serif:var(--sans); }
+body::before,.hero::before { display:none; }
+body { font-size:16px; }
+.navbar,.navbar.scrolled { padding:17px max(28px,calc((100vw - 1280px)/2));background:rgba(252,252,249,.94);border-bottom:1px solid var(--rule); }
+.brand .mark { font-family:var(--sans);font-weight:700;font-size:25px;letter-spacing:-1.2px; }
+.brand .mark .b { font-style:normal;color:var(--primary); }
+nav.nav-links { letter-spacing:0;font-family:var(--sans);font-size:13px;gap:24px; }
+nav.nav-links a { text-transform:none; }
+nav.nav-links .git { border-color:var(--ink);border-radius:0; }
+.hero { max-width:1280px;padding:48px 28px 34px; }
+.conference { display:inline-flex;border:1px solid #9fbb9f;border-radius:0;background:#edf5e9;color:var(--primary-deep);font:700 12px/1.5 var(--sans);letter-spacing:.04em;padding:8px 12px;margin-bottom:32px;gap:24px; }
+.hero-grid { display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:48px;align-items:center; }
+.product-name { margin:0 0 20px;font:700 clamp(48px,5vw,76px)/1 var(--sans);letter-spacing:-.065em; }
+.product-name span { display:inline-block;font-size:.65em;color:var(--primary);vertical-align:top;margin:0 0 0 12px; }
+.hero-title,[lang='zh-CN'] .hero-title { font:700 clamp(28px,3vw,43px)/1.15 var(--sans);letter-spacing:-.045em;margin:0 0 22px; }
+.hero-title span { color:var(--primary); }
+.hero-lede { font-size:16px;line-height:1.8;margin:0 0 24px;max-width:540px; }
+.hero-actions { gap:12px; }
+.btn { border-radius:0;min-height:46px;font:700 13px var(--sans);padding:13px 20px;display:inline-flex;gap:24px; }
+.btn.ink { background:var(--ink);color:#fff; }
+.agent-line { font:11px/1.8 var(--mono);color:var(--ink-soft);margin:22px 0 0; }
+.hero-film { min-width:0; }
+.film-label { display:flex;justify-content:space-between;border-top:1px solid var(--ink);padding:13px 0;font:11px var(--mono);letter-spacing:.06em; }
+.video-hero { position:relative;border-radius:0;background:#24292d;border:1px solid #26342b;box-shadow:none;overflow:hidden; }
+.video-hero video { display:block;width:100%;aspect-ratio:16/9;border-radius:0; }
+.film-play { position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;border:0;color:#fff;background:rgba(12,23,16,.15);font:700 13px var(--sans);cursor:pointer;text-shadow:0 1px 5px #000; }
+.film-play .play-icon { display:grid;place-items:center;padding-left:4px;width:64px;height:64px;border-radius:50%;background:#91d6a3;color:#14291b;font-size:24px;box-shadow:0 0 0 10px #91d6a320;transition:transform .2s,box-shadow .2s; }
+.film-play:hover .play-icon { transform:scale(1.08);box-shadow:0 0 0 16px #91d6a320; }
+.film-play[hidden] { display:none; }
+.film-caption { margin:14px 0 0;font:12px/1.6 var(--mono);color:var(--ink-soft); }
+.play-status { font-size:13px;color:var(--primary-deep);margin:4px 0; }
+.stat-strip { margin-top:42px;border:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--rule);background:transparent;border-radius:0;box-shadow:none; }
+.stat-cell { padding:24px 22px;border-color:var(--rule); }
+.stat-cell:first-child { padding-left:0; }
+.stat-cell .num { font:700 44px/1.2 var(--sans);letter-spacing:-.05em;color:var(--primary); }
+.stat-cell .num.text { font-weight:700;font-size:21px;color:var(--ink); }
+.stat-cell .label { font:700 11px var(--mono);letter-spacing:.04em; }
+.stat-cell .note { font-size:12px;line-height:1.6; }
+.result-context { font-size:12px;max-width:100%; }
+.page { max-width:1280px;padding:0 28px; }
+.block { padding:64px 0;border-bottom:1px solid var(--rule); }
+[data-section]::before { content:attr(data-section) ' / SKILLHONE';display:block;font:700 11px var(--mono);letter-spacing:.12em;color:var(--primary);margin-bottom:22px; }
+.head,[lang='zh-CN'] .head { font:700 clamp(26px,3.1vw,42px)/1.18 var(--sans);letter-spacing:-.04em; }
+.overview-item h3,.path-card h3 { font:700 21px/1.3 var(--sans);letter-spacing:-.03em; }
+.overview-item { border-top:1px solid var(--ink); }
+.overview-item p,.path-card p,.workbench-copy li { font-size:15px; }
+.overview-grid { gap:34px; }
+.path-card,.start-panel,.research-film,.research-details,.workbench-preview { border-radius:0;box-shadow:none; }
+.path-card { background:transparent;border:0;border-top:1px solid var(--ink);padding:26px 0; }
+.pipeline li { border-top:2px solid var(--primary); }
+.pipeline li::before { font:700 28px var(--sans); }
+.research-film { background:transparent;border-left:0;border-right:0; }
+#research-film { padding-top:0; }
+.workbench-preview { border:1px solid var(--rule); }
+.workbench-preview img { max-height:510px; }
+section[id] { scroll-margin-top:100px; }
+@media(min-width:1200px) { .hero { padding-top:48px; } }
+@media(max-width:1000px) { .hero-grid { gap:28px; } .hero-title,[lang='zh-CN'] .hero-title { font-size:31px; } .product-name { font-size:57px; } .hero-lede { font-size:15px; } nav.nav-links { gap:16px; } }
+@media(max-width:760px) { .navbar,.navbar.scrolled { padding:12px 22px; } nav.nav-links { width:100%;gap:0 18px; } .hero { padding:30px 22px; } .hero-grid { grid-template-columns:1fr;gap:32px; } .conference { font-size:11px;gap:12px;max-width:100%;margin-bottom:28px; } .product-name { font-size:64px; } .hero-title,[lang='zh-CN'] .hero-title { font-size:32px; } .hero-lede { max-width:100%; } .agent-line { font-size:10px; } .stat-strip { margin-top:32px; } .stat-cell,.stat-cell:first-child { padding:20px 12px; } .stat-cell .num { font-size:36px; } .stat-cell .num.text { font-size:18px; } .page { padding:0 22px; } .block { padding:48px 0; } .film-play .play-icon { width:52px;height:52px;font-size:20px; } }
+@media(max-width:760px) { section[id] { scroll-margin-top:160px; } }

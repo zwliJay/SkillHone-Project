@@ -20,9 +20,7 @@ An Agent encounters a missing script, a broken reference, or an outdated API. Sk
 
 ## See how it works
 
-[![Watch the 35-second SkillHone overview](static/images/posters/skillhone-overview.png)](https://github.com/zwliJay/SkillHone-Project/releases/tag/media-2026-10)
-
-[Watch / download the 35-second overview](https://github.com/zwliJay/SkillHone-Project/releases/download/media-2026-10/skillhone-overview.mp4). Videos are external release attachments; no video or GIF is stored in this repository.
+https://github.com/user-attachments/assets/69bafb25-5ba9-44cb-b5ff-8a2a94f8e51a
 
 **Report → reproduce → repair → review → remember.** Runtime maintenance starts from a reproducible failure. Evaluation-driven optimization starts from a frozen evaluator in a separate repository. Both preserve evidence and decisions alongside the proposed improvement.
 
