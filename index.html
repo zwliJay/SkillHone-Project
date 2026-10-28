@@ -386,8 +386,7 @@ skillhone setup --agent codex</code></pre><p>Replace <code>codex</code> with you
     </section>
 
     <!-- ============ Cite ============ -->
-    <section class="block reveal" id="open-source"><h2 class="head">Built on open source.</h2><p class="lede">DeepSeek Harness executes repairs. Node.js and its built-in SQLite API keep local records; Git manages repair branches; PyYAML parses quality-check metadata; Primer Octicons supplies workbench icons; TypeScript powers development and builds.</p><p class="component-links"><a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness ↗</a> · <a href="https://github.com/nodejs/node">Node.js ↗</a> · <a href="https://github.com/git/git">Git ↗</a> · <a href="https://github.com/yaml/pyyaml">PyYAML ↗</a> · <a href="https://github.com/primer/octicons">Primer Octicons ↗</a> · <a href="https://github.com/microsoft/TypeScript">TypeScript ↗</a></p><p><a href="https://github.com/Tencent/SkillHone/blob/main/THIRD_PARTY_NOTICES.md">Third-party notices ↗</a></p></section>
-<section class="block reveal" id="cite">
+    <section class="block reveal" id="cite">
       <div class="label-rule">Cite</div>
       <h2 class="head">Cite the EMNLP 2026 paper.</h2>
       <p><a href="https://aclanthology.org/2026.emnlp-industry.105/">ACL Anthology</a> · <a href="https://arxiv.org/abs/2606.08671">arXiv</a> · <a href="static/skillhone.bib" download>Download BibTeX</a></p>
@@ -415,7 +414,8 @@ skillhone setup --agent codex</code></pre><p>Replace <code>codex</code> with you
       <details><summary>Does it merge or push changes automatically?</summary><p>Review is the default. Automatic local merge is an explicit opt-in and requires linked tests to pass. Pushing is a separate user-authorized action. A copy-mode import also has an explicit synchronization step.</p></details>
       <details><summary>Do the paper's gains describe every repair?</summary><p>The reported improvements belong to the paper's benchmark settings and baselines. For your own Skill, use its regression tests or a separate evaluator to measure the effect of a proposed change.</p></details>
     </div></section>
-  </main>
+  <section class="block reveal" id="open-source"><h2 class="head">Acknowledgements</h2><p class="lede">SkillHone uses <a href="https://github.com/deepseek-ai/deepseek-harness">DeepSeek Harness</a> as its repair executor. It works on isolated branches and runs linked tests; SkillHone keeps the resulting local PR, evidence and decision history together.</p></section>
+</main>
 
   <footer><p>SkillHone · Zhiwei Li and Yong Hu · WeChat, Tencent</p><p><a href="https://github.com/Tencent/SkillHone">SkillHone source</a> · <a href="https://github.com/zwliJay/SkillHone-Project">Website source</a> · <a href="https://aclanthology.org/2026.emnlp-industry.105/">Paper</a> · <a href="LICENSE">Website license: MIT</a></p></footer>
 

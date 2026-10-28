@@ -41,19 +41,6 @@ https://github.com/user-attachments/assets/69bafb25-5ba9-44cb-b5ff-8a2a94f8e51a
 
 </details>
 
-## 开源组件
-
-| 组件 | 在 SkillHone 中的用途 |
-|---|---|
-| [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) | 运行时维护流程的修复执行器 |
-| [Node.js](https://github.com/nodejs/node) 及其内置 SQLite API | CLI、本地 HTTP 服务，以及 Issue / PR / Run / Wiki 的持久化存储 |
-| [Git](https://github.com/git/git) | 独立修复分支、提交、Diff 和本地合并 |
-| [PyYAML](https://github.com/yaml/pyyaml) | 随附 Python 质量检查中的 YAML 元数据解析 |
-| [Primer Octicons](https://github.com/primer/octicons) | 工作台中的 Issue、PR、仓库与 Wiki 图标 |
-| [TypeScript](https://github.com/microsoft/TypeScript) | 开发与构建工具链 |
-
-工作台使用浏览器原生 HTML、CSS 和 JavaScript。详见[第三方声明](https://github.com/Tencent/SkillHone/blob/main/THIRD_PARTY_NOTICES.md)
-及 [Harness 集成说明](https://github.com/Tencent/SkillHone/blob/main/docs/deepseek-harness.md)。
 
 ## EMNLP 2026 Industry Track
 
@@ -76,3 +63,8 @@ SkillHone 无需预先集成搜索栈。上述结果对应论文中的设置与�
 本仓库托管 GitHub Pages 项目官网；CLI、内置 Skills 和运行时实现位于 [Tencent/SkillHone](https://github.com/Tencent/SkillHone)。
 
 使用静态 HTTP 服务器预览 `index.html` 或 `zh.html`。两种语言共享 `static/css/site.css` 与 `static/js/site.js`。网站源代码使用 [MIT 许可证](LICENSE)；字体保留各自的 [Open Font License](static/fonts/)，论文单独引用。
+
+## 致谢
+
+SkillHone 使用 [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
+作为修复执行器，在独立分支上完成修改并运行关联测试；SkillHone 将本地 PR、验证证据与决策历史保存在一起。

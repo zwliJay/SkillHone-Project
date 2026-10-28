@@ -44,19 +44,6 @@ Actual local repair records. Local PRs belong to the Skill repository on your co
 
 </details>
 
-## Built with open source
-
-| Component | Role in SkillHone |
-|---|---|
-| [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness) | Repair executor for the runtime maintenance workflow |
-| [Node.js](https://github.com/nodejs/node) and its built-in SQLite API | CLI, local HTTP server, and persistent Issue / PR / Run / Wiki records |
-| [Git](https://github.com/git/git) | Isolated repair branches, commits, diffs and local merges |
-| [PyYAML](https://github.com/yaml/pyyaml) | YAML metadata parsing for the bundled Python quality checks |
-| [Primer Octicons](https://github.com/primer/octicons) | Issue, PR, repository and Wiki icons in the workbench |
-| [TypeScript](https://github.com/microsoft/TypeScript) | Development and build toolchain |
-
-The workbench uses browser-native HTML, CSS and JavaScript. See
-[third-party notices](https://github.com/Tencent/SkillHone/blob/main/THIRD_PARTY_NOTICES.md) and the [Harness integration](https://github.com/Tencent/SkillHone/blob/main/docs/deepseek-harness.md).
 
 ## Published research
 
@@ -79,3 +66,9 @@ SkillHone runs without a pre-integrated search stack. These figures belong to th
 This repository hosts the static project website on GitHub Pages. The CLI, bundled Skills and runtime implementation live in [Tencent/SkillHone](https://github.com/Tencent/SkillHone).
 
 To preview the website, serve this directory with any static HTTP server and open `index.html` or `zh.html`. Both pages share `static/css/site.css` and `static/js/site.js`. Website source is available under the [MIT license](LICENSE). Bundled fonts retain their [Open Font Licenses](static/fonts/); the paper is cited separately.
+
+## Acknowledgements
+
+SkillHone uses [DeepSeek Harness](https://github.com/deepseek-ai/deepseek-harness)
+as its repair executor. It works on an isolated branch and runs the linked tests;
+SkillHone keeps the resulting local PR, evidence and decision history together.
